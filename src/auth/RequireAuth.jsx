@@ -1,5 +1,4 @@
-// COMPONENT FOR AUTHENTICATION (WRAPPER) (RequireAuth is parent to other components -> Use the keyword children as an object)
-
+// COMPONENT (WRAPPER) FOR AUTHORIZED NAVIGATION
 // IMPORT OF PACKAGES & DEPENDENCIES
 import { Navigate } from "react-router-dom";
 // IMPORT OF API
