@@ -1,4 +1,4 @@
-import BookCard from "../components/BookCard";
+import BookCard from "../BookCard";
 
 function Favourites() {
   return (

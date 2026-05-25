@@ -1,6 +1,6 @@
-import Favourites from "../components/Favourites";
-import PurchaseHistory from "../components/PurchaseHistory";
-import UserInformation from "../components/UserInformation";
+import Favourites from "../components/profile/Favourites";
+import PurchaseHistory from "../components/profile/PurchaseHistory";
+import UserInformation from "../components/profile/UserInformation";
 
 function Profile() {
   return (
