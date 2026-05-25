@@ -2,8 +2,10 @@
   "name": "bokhyllan-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,7 +14,6 @@
   "type": "commonjs",
   "dependencies": {
     "dotenv": "^17.4.2",
-    "epress": "^0.0.1-security",
     "express": "^5.2.1"
   },
   "devDependencies": {

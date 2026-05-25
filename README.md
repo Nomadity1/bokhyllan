@@ -1,18 +1,34 @@
-# React + Vite
+# Bokhyllan
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Detta repo har en uppdelad struktur med separat frontend och backend.
 
-Currently, two official plugins are available:
+## Project folder structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- bokhyllan (project folder)
+- bokhyllanFrontend: React + Vite-client
+- bokhyllanBackend: Node.js + Express API
 
-## React Compiler
+## Set up
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Installera dependencies i respektive delprojekt:
 
-Note: This will impact Vite dev & build performances.
+1. `cd bokhyllanFrontend && npm install`
+2. `cd ../bokhyllanBackend && npm install`
 
-## Expanding the ESLint configuration
+## Run local
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Frontend:
+
+1. `cd bokhyllanFrontend`
+2. `npm run dev`
+
+Backend:
+
+1. `cd bokhyllanBackend`
+2. `npm run dev`
+
+## Environmental variables
+
+Create `.env` i `bokhyllanBackend` if needed
+
+`PORT=3000`
