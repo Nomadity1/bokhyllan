@@ -1,13 +1,13 @@
 // IMPORTS OF PACKAGES & DEPENDENCIES
 const express = require("express");
-const validateToken = require("../middleware/validateToken");
+const validateToken = require("../middleware/validateTokenHandler");
 
 // IMPORT OF FUNCTIONS IN CONTROLLER
 const {
   registerUser,
   loginUser,
-  updateUser,
-  deleteUser,
+  //   updateUser,
+  //   deleteUser,
   currentUser,
 } = require("../controllers/userController");
 
@@ -21,8 +21,8 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 // GET for current user (/api/users/current)
 router.get("/current", validateToken, currentUser);
-// PUT/DELETE for a specific user (/api/users/:id)
-router.route("/:id").put(updateUser).delete(deleteUser);
+// PUT/DELETE for a specific user (/api/users/:id) - not implemented yet, but could be useful for future features like updating user info or deleting an account
+// router.route("/:id").put(updateUser).delete(deleteUser);
 
 // EXPORT ROUTER
 module.exports = router;

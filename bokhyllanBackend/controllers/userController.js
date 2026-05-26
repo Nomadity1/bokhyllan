@@ -18,8 +18,9 @@ const registerUser = asyncHandler(async (req, res) => {
     postalAddress,
     postalCode,
     city,
+    phone,
     password,
-  } = req.body; // Hämtar det som skrivs i body efter request
+  } = req.body; // Imports the data from the request body
   // Validate input
   if (
     !firstname ||
@@ -28,18 +29,19 @@ const registerUser = asyncHandler(async (req, res) => {
     !postalAddress ||
     !postalCode ||
     !city ||
+    !phone ||
     !password
   ) {
     res.status(400);
     throw new Error("All fields are required");
   }
-  // Check if email already exists
+  // Check if email already exists (unique emails required in model)
   const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(400);
-    throw new Error("Email already exists");
+    throw new Error("E-mail already exists");
   }
-  // Hash the password and salt it appropriately (10 rounds)
+  // Hash the password and salt it appropriately (10 rounds are not too much, but still secure)
   const hashedPassword = await bcrypt.hash(password, 10);
   // Log the hashed password
   console.log("Hashed password:", hashedPassword);
@@ -52,10 +54,12 @@ const registerUser = asyncHandler(async (req, res) => {
     postalAddress,
     postalCode,
     city,
+    phone,
     password: hashedPassword,
   });
-  // ...and in the database (MongoDB)
+  // Log the created user (without password for security reasons)
   console.log(`User created: ${user}`);
+  // Save the user in the database (MongoDB)
   if (user) {
     res.status(201).json({
       _id: user.id,
@@ -65,6 +69,7 @@ const registerUser = asyncHandler(async (req, res) => {
       postalAddress: user.postalAddress,
       postalCode: user.postalCode,
       city: user.city,
+      phone: user.phone,
     });
   } else {
     res.status(400);

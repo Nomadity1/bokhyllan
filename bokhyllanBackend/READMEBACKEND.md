@@ -38,6 +38,10 @@ CLIENT -> SERVER -> ROUTES -> CONTROLLERS -> MODELS -> MONGOOSE -> MONGODB
     --> dotenv enables reading .env file
     npm install --save-dev nodemon
     --> nodemon starts app & server
+    npm install --save-dev nodemon
+    --> nodemon starts app & server
+    npm install cors
+    --> cors-stöd  
 3.  Double-check installation success in package.json
 4.  Create .env for definition of ports
 5.  Create server.js
