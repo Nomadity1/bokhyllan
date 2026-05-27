@@ -1,7 +1,8 @@
+// IMPORTS
 import Favourites from "../../components/profile/Favourites";
 import PurchaseHistory from "../../components/profile/PurchaseHistory";
 import UserInformation from "../../components/profile/UserInformation";
-
+// DEFINE FUNCTION
 function Profile() {
   return (
     <div>
@@ -19,5 +20,5 @@ function Profile() {
     </div>
   );
 }
-
+// EXPORT
 export default Profile;
