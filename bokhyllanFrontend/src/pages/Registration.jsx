@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../api";
-
+// IMPORT OF STYLE
+import "../App.css";
 // FUNCTIONS & PARAMETERS
 function Register() {
   // Stateful-variabler för att ta emot credentials och hantera error
@@ -12,6 +13,7 @@ function Register() {
   const [postaladdress, setPostaladdress] = useState("");
   const [postalcode, setPostalcode] = useState("");
   const [city, setCity] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   // Aktivera navigate för att kunna redirecta användaren efter inloggning
@@ -31,14 +33,15 @@ function Register() {
         postaladdress,
         postalcode,
         city,
+        phone,
         password,
       });
       // OM backend har returnerat en token, spara i localStorage
       if (data.accessToken) {
         // Namn på token som matchar backend
         api.saveToken(data.accessToken);
-        // OM SUCCESS -->  USENAVIGATE till ("/contacts");
-        navigate("/contacts");
+        // OM SUCCESS -->  USENAVIGATE till ("/login");
+        navigate("/login");
       }
     } catch (error) {
       // OM ERROR --> Sätt error state till error.message
@@ -119,6 +122,17 @@ function Register() {
         </div>
         <div>
           <input
+            type="text"
+            // Binder inputfältet till phone state
+            value={phone}
+            placeholder="Phone"
+            // Eventhanterare som uppdaterar phone state när användaren skriver i inputfältet
+            onChange={(e) => setPhone(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <input
             type="password"
             // Binder inputfältet till password state
             value={password}
@@ -128,13 +142,20 @@ function Register() {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" className="register-button">
+          Register
+        </button>
       </form>
       {/* Conditional error message */}
       {error && <p className="error-message">{error}</p>}
-      <p>
-        Already have an account? <Link to="/">Login here</Link>
-      </p>
+      <nav className="registration-navbar">
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+        <p>
+          Go back to start without registering? <Link to="/">Home</Link>
+        </p>
+      </nav>
     </div>
   );
 }

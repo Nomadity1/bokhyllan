@@ -1,28 +1,27 @@
-// NAVBAR-komponent som används i Header.jsx
+// NAVBAR-komponent som används i App.jsx
 // PACKAGES & DEPENDENCIES
-// import React from "react";
 import { Link } from "react-router-dom";
-// AUTH-COMPONENT (används här för att hantera navigationslänkar)
-import RequireAuth from "../../auth/RequireAuth";
+// AUTH-HOOK
+import useAuth from "../hooks/useAuth";
 
-export default function Navbar({ authed }) {
+function Navbar() {
+  // useAuth hook hämtar statusen på authed från AuthContext
+  const { authed } = useAuth();
   return (
-    <nav className="top-navbar">
-      {/* Publika navigationslänkar (syns alltid) */}
-      <Link to="/">Start</Link>
-      {/* <Link to="/categories">Kategorier</Link> */}
-      {/* <Link to="/categories">Boktips</Link> */}
-      {/* <Link to="/about">Om oss</Link> */}
+    <nav className="head-nav-container">
+      {/* Public links (always visible) */}
+      <Link to="/categories">Kategorier</Link>
+      <Link to="/tips">Boktips</Link>
+      {/* <Link to="/">Home</Link> */}
+      {/* Behövs Home-länk? Home är ju redan på "/" */}
       <Link to="/login">Logga in</Link>
-      <Link to="/register">Register</Link>
-      {/* <Link to="/cart">Varukorg (´{$numberOfItems}´)</Link> */}
-      {/* Skyddade navigationslänkar (syns bara när användaren är inloggad) */}
-      <RequireAuth>
-        {authed && <Link to="/contacts">Kontakter</Link>}
-        {authed && <Link to="/contacts">Contacts</Link>}
-        {/* {authed && <Link to="/favourites">Favoriter</Link>} */}
-        {/* {authed && <Link to="/profile">Profil</Link>} */}
-      </RequireAuth>
+      <Link to="/register">Registrera</Link>
+      <Link to="/cart">Varukorg (0)</Link>
+      {/* Protected links (visible only if authed is true) */}
+      {authed && <Link to="/profile">Profil</Link>}
+      {authed && <Link to="/profile/favourites">Favoriter</Link>}
     </nav>
   );
 }
+// EXPORT
+export default Navbar;

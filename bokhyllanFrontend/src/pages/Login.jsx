@@ -5,7 +5,7 @@ import api from "../api";
 // COMPONENTS - HOOK för att använda AuthContext
 import { useAuth } from "../hooks/useAuth";
 // STYLING
-// import "./Login.css";
+import "../App.css";
 
 // FUNCTIONS & PARAMETERS
 function Login() {
@@ -67,13 +67,22 @@ function Login() {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
       {/* Villkorat felmeddelande */}
       {error && <p className="error-message">{error}</p>}
-      <p>
-        No account? <Link to="/register">Register here...</Link>
-      </p>
+      <div className="login-navbar">
+        <p>No account?</p>{" "}
+        <p>
+          <Link to="/register">Sign up</Link>
+        </p>
+        <p>Go back to start without logging in?</p>
+        <p>
+          <Link to="/">Home</Link>
+        </p>
+      </div>
     </div>
   );
 }

@@ -67,21 +67,25 @@ export function login({ email, password }) {
 }
 // REGISTER
 export function register({
-  name,
+  firstname,
+  surname,
   email,
-  postaddress,
-  postalCode,
+  postaladdress,
+  postalcode,
   city,
+  phone,
   password,
 }) {
   return request("/users/register", {
     method: "POST",
     body: JSON.stringify({
-      name,
+      firstname,
+      surname,
       email,
-      postaddress,
-      postalCode,
+      postalAddress: postaladdress,
+      postalCode: postalcode,
       city,
+      phone,
       password,
     }),
   });

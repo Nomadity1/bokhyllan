@@ -11,6 +11,8 @@ function UserInformation() {
       <p>Email: {userInfo.email}</p>
       <p>Postal Address: {userInfo.postalAddress}</p>
       <p>Postal Code: {userInfo.postalCode}</p>
+      <p>City: {userInfo.city}</p>
+      <p>Phone: {userInfo.phone}</p>
       <p>Member since: {userInfo.memberSince}</p>
     </div>
   );
