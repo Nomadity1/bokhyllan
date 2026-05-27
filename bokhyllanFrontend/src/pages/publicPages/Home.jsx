@@ -18,7 +18,7 @@
 // IMPORT OF AUTH-COMPONENT
 
 // IMPORT OF STYLES
-import "../App.css";
+import "../../App.css";
 
 // FUNCTIONS & PARAMETERS
 function Home() {

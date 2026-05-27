@@ -1,15 +1,15 @@
 // IMPORT PACKAGES & DEPENDENCIES
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // IMPORT PAGES
-import Home from "./pages/Home";
-import Register from "./pages/Registration";
-import Login from "./pages/Login";
-import Profile from "./pages/Profile";
-import NotFound from "./pages/NotFound";
+import Home from "./pages/publicPages/Home";
+import Register from "./pages/publicPages/Registration";
+import Login from "./pages/publicPages/Login";
+import Profile from "./pages/protectedPages/Profile";
+import NotFound from "./pages/publicPages/NotFound";
 // IMPORT COMPONENTS
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Header from "./components/home/Header";
+import Navbar from "./components/home/Navbar";
+import Footer from "./components/home/Footer";
 import Favourites from "./components/profile/Favourites";
 // IMPORT AUTH-COMPONENT (används här för att skydda routes)
 import { RequireAuth } from "./auth/RequireAuth";

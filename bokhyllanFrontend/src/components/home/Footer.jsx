@@ -3,7 +3,7 @@
 // import React from "react";
 import { Link } from "react-router-dom";
 // IMPORT STYLE
-import "../App.css";
+import "../../App.css";
 // FUNCTIONS & PARAMETERS
 function Footer() {
   const currentYear = new Date().getFullYear();

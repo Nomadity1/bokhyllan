@@ -13,6 +13,7 @@
   /* --accent: #2ec4b6ff; */
   --accent-bg: #2ec4b6ff;
   --accent-border: #2ec4b6ff;
+  --hover-bg: #2ec4b6ff;
   --header-bg: #264653ff;
   --shadow: #264653ff 0 10px 15px -3px, #264653ff 0 4px 6px -2px;
   --appTexts: "Love Ya Like A Sister", system-ui, sans-serif;

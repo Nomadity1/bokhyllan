@@ -1,9 +1,9 @@
 // IMPORT OF PACKAGES & DEPENDENCIES
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import api from "../api";
+import api from "../../api";
 // IMPORT OF STYLE
-import "../App.css";
+import "../../App.css";
 // FUNCTIONS & PARAMETERS
 function Register() {
   // Stateful-variabler för att ta emot credentials och hantera error

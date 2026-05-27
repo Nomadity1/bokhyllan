@@ -2,7 +2,7 @@
 // PACKAGES & DEPENDENCIES
 import { Link } from "react-router-dom";
 // AUTH-HOOK
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 function Navbar() {
   // useAuth hook hämtar statusen på authed från AuthContext

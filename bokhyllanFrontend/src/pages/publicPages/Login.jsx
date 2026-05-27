@@ -1,11 +1,11 @@
 // PACKAGES & DEPENDENCIES
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import api from "../api";
+import api from "../../api";
 // COMPONENTS - HOOK för att använda AuthContext
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "../../hooks/useAuth";
 // STYLING
-import "../App.css";
+import "../../App.css";
 
 // FUNCTIONS & PARAMETERS
 function Login() {
