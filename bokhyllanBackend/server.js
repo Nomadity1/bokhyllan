@@ -19,8 +19,10 @@ app.use(
       // Allow server-to-server/tools without Origin header.
       if (!origin) return callback(null, true);
 
-      const isLocalhost = /^http:\/\/localhost:\d+$/.test(origin);
-      if (isLocalhost) return callback(null, true);
+      const isLocalDevOrigin = /^https?:\/\/(localhost|127\.0\.0\.1):\d+$/.test(
+        origin,
+      );
+      if (isLocalDevOrigin) return callback(null, true);
 
       return callback(new Error("Not allowed by CORS"));
     },

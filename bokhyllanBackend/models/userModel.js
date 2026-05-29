@@ -36,12 +36,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please add a password"], // Anpassat felmeddelande
     },
-    favourites: [
-      {
-        type: mongoose.Schema.Types.ObjectId, // Referens till Book-modellen
-        ref: "Book",
-      },
-    ],
+    // ,
+    // favourites: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId, // Referens till Book-modellen
+    //     ref: "Book",
+    //   },
+    // ],
   },
   { timestamps: true }, // Skapar automatiskt createdAt och updatedAt fält
 );
