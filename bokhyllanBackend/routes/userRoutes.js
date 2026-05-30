@@ -9,6 +9,9 @@ const {
   //   updateUser,
   //   deleteUser,
   currentUser,
+  getFavourites,
+  addFavourite,
+  removeFavourite,
 } = require("../controllers/userController");
 
 // BUILD EXPRESS ROUTER
@@ -21,6 +24,10 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 // GET for current user (/api/users/current)
 router.get("/current", validateToken, currentUser);
+// FAVOURITES for current user
+router.get("/favourites", validateToken, getFavourites);
+router.post("/favourites", validateToken, addFavourite);
+router.delete("/favourites/:isbn", validateToken, removeFavourite);
 // PUT/DELETE for a specific user (/api/users/:id) - not implemented yet, but could be useful for future features like updating user info or deleting an account
 // router.route("/:id").put(updateUser).delete(deleteUser);
 

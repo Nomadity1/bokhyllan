@@ -128,5 +128,81 @@ const currentUser = asyncHandler(async (req, res) => {
   res.status(200).json(req.user);
 });
 
+// FAVOURITES
+// @desc Get favourites for current user
+// @route GET /api/users/favourites
+// @access private
+const getFavourites = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id).select("favourites");
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  const favourites = Array.isArray(user.favourites) ? user.favourites : [];
+  res.status(200).json({ favourites });
+});
+
+// @desc Add favourite ISBN for current user
+// @route POST /api/users/favourites
+// @access private
+const addFavourite = asyncHandler(async (req, res) => {
+  const isbnNumber = Number(req.body?.isbn);
+  if (!Number.isFinite(isbnNumber)) {
+    res.status(400);
+    throw new Error("Valid isbn is required");
+  }
+
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  if (!Array.isArray(user.favourites)) {
+    user.favourites = [];
+  }
+
+  if (!user.favourites.includes(isbnNumber)) {
+    user.favourites.push(isbnNumber);
+    await user.save();
+  }
+
+  res.status(200).json({ favourites: user.favourites });
+});
+
+// @desc Remove favourite ISBN for current user
+// @route DELETE /api/users/favourites/:isbn
+// @access private
+const removeFavourite = asyncHandler(async (req, res) => {
+  const isbnNumber = Number(req.params.isbn);
+  if (!Number.isFinite(isbnNumber)) {
+    res.status(400);
+    throw new Error("Valid isbn is required");
+  }
+
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  if (!Array.isArray(user.favourites)) {
+    user.favourites = [];
+  }
+
+  user.favourites = user.favourites.filter((isbn) => isbn !== isbnNumber);
+  await user.save();
+
+  res.status(200).json({ favourites: user.favourites });
+});
+
 // EXPORT
-module.exports = { registerUser, loginUser, currentUser };
+module.exports = {
+  registerUser,
+  loginUser,
+  currentUser,
+  getFavourites,
+  addFavourite,
+  removeFavourite,
+};
