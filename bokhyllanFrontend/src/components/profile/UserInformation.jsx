@@ -1,19 +1,25 @@
+// USER INFORMATION COMPONENT FOR PROFILE PAGE
+// IMPORT API
 import api from "../../api";
 
-// FUNCTION & PARAMETERS
+// FUNCTION GENERATING USER INFORMATION
 function UserInformation() {
   const userInfo = api.getUserInfo();
   return (
     <div>
-      <h2>User Information</h2>
-      <p>Firstname: {userInfo.firstname}</p>
-      <p>Surname: {userInfo.surname}</p>
-      <p>Email: {userInfo.email}</p>
-      <p>Postal Address: {userInfo.postalAddress}</p>
-      <p>Postal Code: {userInfo.postalCode}</p>
-      <p>City: {userInfo.city}</p>
-      <p>Phone: {userInfo.phone}</p>
-      <p>Member since: {userInfo.memberSince}</p>
+      <h2>Användarinformation</h2>
+      <p>Förnamn: {userInfo.firstname}</p>
+      <p>Efternamn: {userInfo.surname}</p>
+      <p>E-post: {userInfo.email}</p>
+      <p>Postadress: {userInfo.postalAddress}</p>
+      <p>Postnummer: {userInfo.postalCode}</p>
+      <p>Stad: {userInfo.city}</p>
+      <p>Telefon: {userInfo.phone}</p>
+      <p>Medlem sedan: {userInfo.memberSince}</p>
+      <p>
+        Här kommer funktioner för att redigera användardata som förväntas i
+        framtiden...
+      </p>
     </div>
   );
 }

@@ -1,32 +1,60 @@
 // HEADER COMPONENT - used in App.jsx, rendered on all pages
 // IMPORT ASSETS & COMPONENTS
-import logo from "../../assets/bokhyllanLogo.jpg";
-import loginIcon from "../../assets/icons/circle-user-solid-full.svg";
-import bagIcon from "../../assets/icons/bag-shopping-solid-full.svg";
+import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import "./header.css";
+// IMPORT FROM PUBLIC FOLDER
+const logo = "/bokhyllanLogo.jpg";
+const loginIcon = "/icons/circle-user-solid-full.svg";
+const bagIcon = "/icons/bag-shopping-solid-full.svg";
 
 // FUNCTIONS & PARAMETERS
-// function Header({ authed }) {
 function Header() {
   const Title = "Bokhyllan";
+  const { authed } = useAuth();
+
   // CONTENT TO BE RENDERED
   return (
     <header className="header-container">
       <div className="header-logo">
-        <img src={logo} alt="Logo för Bokhyllan" className="header-logo-icon" />
+        <img src={logo} alt="Logo for Bokhyllan" className="header-logo-icon" />
       </div>
       <div className="header-title-container">
         <h1 className="header-title">{Title}</h1>
       </div>
       <div className="header-menu-icon-container">
-        <img src={loginIcon} alt="Login icon" className="header-menu-icon" />
-        <img
-          src={bagIcon}
-          alt="Shopping bag icon"
-          className="header-menu-icon"
-        />
+        <Link
+          to={authed ? "/profile" : "/login"}
+          className="header-menu-icon-link"
+          aria-label={authed ? "Profil" : "Logga in"}
+        >
+          <img
+            src={loginIcon}
+            alt=""
+            aria-hidden="true"
+            className="header-menu-icon"
+          />
+          <p className="header-menu-icon-text">
+            {authed ? "Profil" : "Logga in"}
+          </p>
+        </Link>
+        <Link
+          to="/cart"
+          className="header-menu-icon-link"
+          aria-label="Varukorg"
+        >
+          <img
+            src={bagIcon}
+            alt=""
+            aria-hidden="true"
+            className="header-menu-icon"
+          />
+          <p className="header-menu-icon-text">Varukorg (0)</p>
+        </Link>
       </div>
     </header>
   );
 }
-// EXPORTS
+
+// EXPORT
 export default Header;

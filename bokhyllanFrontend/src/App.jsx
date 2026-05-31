@@ -1,11 +1,15 @@
 // IMPORT PACKAGES & DEPENDENCIES
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // IMPORT PAGES
-import Home from "./pages/publicPages/Home";
+import Home from "./pages/Home";
+import BookTip from "./pages/publicPages/BookTip";
 import Register from "./pages/publicPages/Registration";
 import Login from "./pages/publicPages/Login";
-import Profile from "./pages/protectedPages/Profile";
+import Cart from "./pages/purchasePages/Cart";
+import Checkout from "./pages/purchasePages/Checkout";
+import Confirmation from "./pages/purchasePages/Confirmation";
 import NotFound from "./pages/publicPages/NotFound";
+import Profile from "./pages/protectedPages/Profile";
 // IMPORT COMPONENTS
 import Header from "./components/home/Header";
 import Navbar from "./components/home/Navbar";
@@ -17,7 +21,8 @@ import { RequireAuth } from "./auth/RequireAuth";
 // import useAuth from "./hooks/useAuth";
 // IMPORT STYLE
 import "./App.css";
-// DEFINE FUNCTIONS & PARAMETERS
+
+// FUNCTION
 function App() {
   // // useAuth hook hämtar statusen på authed från AuthContext
   // const { authed } = useAuth();
@@ -35,9 +40,13 @@ function App() {
           <Routes>
             {/* Public routes */}
             <Route path="/" element={<Home />} />
+            <Route path="/tips" element={<BookTip />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            {/* Protected routes using RequireAuth wrapper component */}
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/confirmation" element={<Confirmation />} />
+            {/* Protected route using RequireAuth wrapper component */}
             <Route
               path="/profile"
               element={

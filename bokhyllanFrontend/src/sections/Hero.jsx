@@ -1,6 +1,6 @@
 // HERO COMPONENT
-// IMPORT ASSETS & COMPONENTS
-import heroImage from "../assets/images/reader-on-train.png";
+// IMPORT FROM PUBLIC FOLDER
+const heroImage = "/images/reader-on-train.png";
 // FUNCTION
 function Hero() {
   const slogan = "Att läsa är att resa";

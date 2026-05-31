@@ -2,56 +2,56 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../../api";
-// COMPONENTS - HOOK för att använda AuthContext
+// COMPONENTS - HOOK for using AuthContext
 import { useAuth } from "../../hooks/useAuth";
 // STYLING
-import "../../App.css";
+import "./regandlogin.css";
 
-// FUNCTIONS & PARAMETERS
+// FUNCTION
 function Login() {
-  // Stateful-variabler för att ta emot credentials och hantera error
+  // Stateful-variables for receiving credentials and handling error
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // Aktivera navigate för att kunna redirecta användaren efter inloggning
+  // Enable navigate to redirect the user after login
   const navigate = useNavigate();
-  // useAuth hook hämtar login-funktion från AuthContext
-  const { loginUser } = useAuth(); // useAuth sköter tokensparande och uppdaterar tillstånd för Auth
+  // useAuth hook retrieves the login function from AuthContext
+  const { loginUser } = useAuth(); // useAuth handles token storage and updates Auth state
 
-  // Funktion för eventhantering
+  // Function for event handling
   async function handleSubmit(e) {
-    // Undvik att sidan laddas om när formuläret skickas
+    // Prevent the page from reloading when the form is submitted
     e.preventDefault();
     setError("");
-    // ANROPA API FÖR INLOGGNING (sköter fetch med mera)
+    // CALL API for log in (handles fetch and other operations related to login)
     try {
       const data = await api.login({ email, password });
-      // OM backend har returnerat en token, spara i localStorage
+      // IF backend has returned a token, save it in localStorage
       if (data.accessToken) {
-        // Namn på token som matchar backend
-        loginUser(data.accessToken); // NU VIA KONTEXTEN istället för med api.saveToken
-        // OM SUCCESS -->  skicka användaren till ("/contacts");
-        navigate("/contacts");
+        // Token name matching backend
+        loginUser(data.accessToken); // NOW VIA CONTEXT instead of api.saveToken
+        // IF SUCCESS --> redirect user to HOME ("/");
+        navigate("/");
       } else {
         setError("Login failed. Please check your credentials.");
       }
     } catch (error) {
-      // OM ERROR --> Sätt error state till error.message
+      // IF ERROR --> Set error state to error.message
       setError(error.message);
     }
   }
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Inloggning</h2>
+      <form onSubmit={handleSubmit} className="login-form">
         <div>
           <input
             type="email"
-            // Binder inputfältet till email state
+            // Binds input field to email state
             value={email}
-            placeholder="E-mail"
-            // Eventhanterare som uppdaterar email state när användaren skriver i inputfältet
+            placeholder="E-post"
+            // Event handler that updates email state when the user types in the input field
             onChange={(e) => setEmail(e.target.value)}
             required
           />
@@ -59,28 +59,32 @@ function Login() {
         <div>
           <input
             type="password"
-            // Binder inputfältet till password state
+            // Binds input field to password state
             value={password}
-            placeholder="Password"
-            // Eventhanterare som uppdaterar password state när användaren skriver i inputfältet
+            placeholder="Lösenord"
+            // Event handler that updates password state when the user types in the input field
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
         <button type="submit" className="login-button">
-          Login
+          Logga in
         </button>
       </form>
-      {/* Villkorat felmeddelande */}
+      {/* Conditional error message */}
       {error && <p className="error-message">{error}</p>}
       <div className="login-navbar">
-        <p>No account?</p>{" "}
+        <p>Har du inget konto?</p>
         <p>
-          <Link to="/register">Sign up</Link>
+          <Link to="/register" className="register-link">
+            Registrering
+          </Link>
         </p>
-        <p>Go back to start without logging in?</p>
+        <p>Till start utan att logga in?</p>
         <p>
-          <Link to="/">Home</Link>
+          <Link to="/" className="home-link">
+            Start
+          </Link>
         </p>
       </div>
     </div>

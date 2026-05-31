@@ -1,9 +1,10 @@
 // IMPORT OF PACKAGES & DEPENDENCIES
-import { useState } from "react";
+import { useState } from "react"; // React hook för att hantera state
 import { useNavigate, Link } from "react-router-dom";
 import api from "../../api";
 // IMPORT OF STYLE
-import "../../App.css";
+import "./regandlogin.css";
+
 // FUNCTIONS & PARAMETERS
 function Register() {
   // Stateful-variabler för att ta emot credentials och hantera error
@@ -26,7 +27,7 @@ function Register() {
     setError("");
     // ANROPA API FÖR REGISTRERING
     try {
-      const data = await api.register({
+      await api.register({
         firstname,
         surname,
         email,
@@ -36,30 +37,25 @@ function Register() {
         phone,
         password,
       });
-      // OM backend har returnerat en token, spara i localStorage
-      if (data.accessToken) {
-        // Namn på token som matchar backend
-        api.saveToken(data.accessToken);
-        // OM SUCCESS -->  USENAVIGATE till ("/login");
-        navigate("/login");
-      }
+      // Registration succeeds without token response; continue to login page.
+      navigate("/login");
     } catch (error) {
-      // OM ERROR --> Sätt error state till error.message
+      // IF ERROR --> Set error state to error.message
       setError(error.message);
     }
   }
 
   // RENDER CONTENT
   return (
-    <div>
-      <h2>Registration</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="registration-container">
+      <h2>Registrering</h2>
+      <form onSubmit={handleSubmit} className="registration-form">
         <div>
           <input
             type="text"
             // Binder inputfältet till firstname state
             value={firstname}
-            placeholder="Firstname"
+            placeholder="Förnamn"
             // Eventhanterare som uppdaterar firstname state när användaren skriver i inputfältet
             onChange={(e) => setFirstname(e.target.value)}
             required
@@ -70,7 +66,7 @@ function Register() {
             type="text"
             // Binder inputfältet till surname state
             value={surname}
-            placeholder="Surname"
+            placeholder="Efternamn"
             // Eventhanterare som uppdaterar surname state när användaren skriver i inputfältet
             onChange={(e) => setSurname(e.target.value)}
             required
@@ -81,7 +77,7 @@ function Register() {
             type="email"
             // Binder inputfältet till email state
             value={email}
-            placeholder="E-mail"
+            placeholder="E-post"
             // Eventhanterare som uppdaterar email state när användaren skriver i inputfältet
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -92,7 +88,7 @@ function Register() {
             type="text"
             // Binder inputfältet till postaladdress state
             value={postaladdress}
-            placeholder="Postal Address"
+            placeholder="Postadress"
             // Eventhanterare som uppdaterar postaladdress state när användaren skriver i inputfältet
             onChange={(e) => setPostaladdress(e.target.value)}
             required
@@ -103,7 +99,7 @@ function Register() {
             type="text"
             // Binder inputfältet till postalcode state
             value={postalcode}
-            placeholder="Postal Code"
+            placeholder="Postnummer"
             // Eventhanterare som uppdaterar postalcode state när användaren skriver i inputfältet
             onChange={(e) => setPostalcode(e.target.value)}
             required
@@ -114,7 +110,7 @@ function Register() {
             type="text"
             // Binder inputfältet till city state
             value={city}
-            placeholder="City"
+            placeholder="Ort"
             // Eventhanterare som uppdaterar city state när användaren skriver i inputfältet
             onChange={(e) => setCity(e.target.value)}
             required
@@ -125,7 +121,7 @@ function Register() {
             type="text"
             // Binder inputfältet till phone state
             value={phone}
-            placeholder="Phone"
+            placeholder="Telefonnummer"
             // Eventhanterare som uppdaterar phone state när användaren skriver i inputfältet
             onChange={(e) => setPhone(e.target.value)}
             required
@@ -136,24 +132,30 @@ function Register() {
             type="password"
             // Binder inputfältet till password state
             value={password}
-            placeholder="Password"
+            placeholder="Lösenord"
             // Eventhanterare som uppdaterar password state när användaren skriver i inputfältet
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
         <button type="submit" className="register-button">
-          Register
+          Registrera
         </button>
       </form>
       {/* Conditional error message */}
       {error && <p className="error-message">{error}</p>}
       <nav className="registration-navbar">
+        <p>Är du redan registrerad?</p>
         <p>
-          Already have an account? <Link to="/login">Login</Link>
+          <Link to="/login" className="login-link">
+            Inloggning
+          </Link>
         </p>
+        <p>Till start utan att registrera dig?</p>
         <p>
-          Go back to start without registering? <Link to="/">Home</Link>
+          <Link to="/" className="home-link">
+            Start
+          </Link>
         </p>
       </nav>
     </div>

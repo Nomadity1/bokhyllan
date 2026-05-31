@@ -3,7 +3,8 @@
 // import React from "react";
 import { Link } from "react-router-dom";
 // IMPORT STYLE
-import "../../App.css";
+import "./footer.css";
+
 // FUNCTIONS & PARAMETERS
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,7 +13,7 @@ function Footer() {
     <footer className="footer-container">
       <div className="footer-copyright">
         <p className="footer-text">
-          Copyright © {currentYear} Bokhyllan. All rights reserved.
+          Copyright © {currentYear} Bokhyllan. Alla rättigheter förbehållna.
         </p>
       </div>
       <div className="footer-navbar">

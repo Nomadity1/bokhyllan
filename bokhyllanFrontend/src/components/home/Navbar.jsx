@@ -3,6 +3,8 @@
 import { Link } from "react-router-dom";
 // AUTH-HOOK
 import useAuth from "../../hooks/useAuth";
+// STYLE
+import "./navbar.css";
 
 function Navbar() {
   // useAuth hook hämtar statusen på authed från AuthContext
@@ -10,15 +12,14 @@ function Navbar() {
   return (
     <nav className="head-nav-container">
       {/* Public links (always visible) */}
-      <Link to="/categories">Kategorier</Link>
+      <Link to="/">Start</Link>
+      {/* <Link to="/categories">Kategorier</Link> */}
       <Link to="/tips">Boktips</Link>
-      {/* <Link to="/">Home</Link> */}
-      {/* Behövs Home-länk? Home är ju redan på "/" */}
-      <Link to="/login">Logga in</Link>
-      <Link to="/register">Registrera</Link>
-      <Link to="/cart">Varukorg (0)</Link>
+      {/* <Link to="/login">Inloggning</Link> */}
+      {/* <Link to="/register">Registrering</Link> */}
+      {/* <Link to="/cart">Varukorg</Link> */}
       {/* Protected links (visible only if authed is true) */}
-      {authed && <Link to="/profile">Profil</Link>}
+      {/* {authed && <Link to="/profile">Profil</Link>} */}
       {authed && <Link to="/profile/favourites">Favoriter</Link>}
     </nav>
   );

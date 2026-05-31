@@ -1,0 +1,36 @@
+/* FOOTER NAVIGATION BAR */
+.footer-navbar {
+  display: flex;
+  gap: 0px;
+  justify-content: center;
+  min-width: 250px;
+  background: var(--header-bg);
+  @media (max-width: 768px) {
+    /* Style to be developed */
+  }
+  & a {
+    flex: 1 1 0;
+    text-align: center;
+    display: block;
+    box-sizing: border-box;
+    background: var(--header-bg);
+    color: var(--text);
+    text-decoration: none;
+    padding: 12px 12px;
+    border-radius: 1px;
+    transition: background-color 0.3s;
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-wrap: wrap;
+      }
+      .nav-container a {
+        flex: 1 1 calc(50% - 12px);
+      }
+    }
+    &:hover {
+      background-color: var(--accent-bg);
+      color: var(--text-highlight);
+      font-weight: bold;
+    }
+  }
+}

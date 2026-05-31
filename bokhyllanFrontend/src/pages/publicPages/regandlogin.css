@@ -1,0 +1,148 @@
+/* LOG IN & REGISTRATION */
+.login-container,
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  color: var(--text-dark);
+  font-family: var(--appTexts);
+  font-size: 16px;
+  @media (max-width: 768px) {
+    /* STYLE TO BE DEVELOPED */
+  }
+  & .registration-form,
+  & .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: var(--appTexts);
+    font-size: 16px;
+  }
+  & .login-button,
+  & .register-button {
+    background: var(--header-bg);
+    color: var(--text);
+    border: none;
+    width: var(--auth-control-width-desktop);
+    height: 48px;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    margin: 16px auto;
+    border-radius: 1px;
+    font-family: var(--appTexts);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  & .login-button:hover,
+  & .register-button:hover {
+    background-color: var(--accent-bg);
+    color: var(--text-highlight);
+    font-weight: bold;
+  }
+  & .registration-navbar,
+  & .login-navbar {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    justify-content: center;
+    min-width: 250px;
+    max-width: none;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      /* STYLE TO BE DEVELOPED */
+    }
+  }
+  & .registration-navbar p,
+  & .login-navbar p {
+    white-space: nowrap;
+    padding: 0;
+    margin: 8px 0 4px;
+    text-align: center;
+  }
+  & .registration-navbar a,
+  & .login-navbar a {
+    display: block;
+    width: var(--auth-control-width-desktop);
+    height: 48px;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+  & a {
+    flex: 1 1 0;
+    text-align: center;
+    display: block;
+    box-sizing: border-box;
+    background: var(--header-bg);
+    color: var(--text);
+    text-decoration: none;
+    padding: 12px 12px;
+    border-radius: 1px;
+    transition: background-color 0.3s;
+    @media (max-width: 768px) {
+      /* Style to be developed */
+    }
+    .nav-container a {
+      flex: 1 1 calc(50% - 12px);
+    }
+    &:hover,
+    &:focus-visible {
+      background-color: var(--accent-bg);
+      color: var(--text-highlight);
+      font-weight: bold;
+    }
+  }
+}
+
+/* NAVIGATION LINKS */
+.registration-link,
+.login-link,
+.home-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--auth-control-width-desktop);
+  height: 48px;
+  max-width: 100%;
+  margin-inline: auto;
+  text-align: center;
+  box-sizing: border-box;
+  background: var(--header-bg);
+  color: var(--text);
+  text-decoration: none;
+  padding: 0 24px;
+  border-radius: 1px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+.registration-link:hover,
+.login-link:hover,
+.home-link:hover,
+.registration-link:focus-visible,
+.login-link:focus-visible,
+.home-link:focus-visible {
+  background-color: var(--accent-bg);
+  color: var(--text-highlight);
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  .login-button,
+  .register-button,
+  .registration-link,
+  .login-link,
+  .home-link,
+  .registration-navbar a,
+  .login-navbar a {
+    width: var(--auth-control-width-mobile);
+    height: 44px;
+  }
+}

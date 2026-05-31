@@ -1,9 +1,10 @@
+// HOOK to use AuthContext in components
 // PACKAGES & DEPENDENCIES
 import { useContext } from "react";
 // CONTEXT
-import { AuthContext } from "../contexts/AuthContext.jsx";
+import { AuthContext } from "../contexts/authContext.js";
 
-// Custom hook för att använda AuthContext
+// Custom hook to use AuthContext
 function useAuth() {
   return useContext(AuthContext);
 }

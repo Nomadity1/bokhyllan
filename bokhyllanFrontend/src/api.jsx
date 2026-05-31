@@ -1,18 +1,33 @@
-// APPENS API: VÅR KNUTPUNKT FÖR NÅ DATABASEN GENOM HTTP-ANROP TILL OCH FRÅN FRONTEND
+// APP API: THE CENTRAL HUB FOR ACCESSING THE DATABASE THROUGH HTTP REQUESTS TO AND FROM THE FRONTEND
 
-// IMPORTER
-// Inga importer!
+// IMPORTS
+// No imports!
 
 // VARIABLE for our base-URL to the app-API
-const API_BASE = "http://localhost:3000/api";
+const API_BASE = `${window.location.protocol}//${window.location.hostname}:3000/api`;
+const CART_STORAGE_KEY = "bokhyllan_cart";
 
-// FUNCTIONS & PARAMETERS
+function readCartFromStorage() {
+  try {
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveCartToStorage(items) {
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+}
+
+// FUNCTIONS
 // localStorage-keys to get and set token
 export function getToken() {
-  return localStorage.getItem("token"); // returnerar token eller null om den inte finns
+  return localStorage.getItem("token"); // returns token or null if it doesn't exist
 }
 export function saveToken(token) {
-  localStorage.setItem("token", token); // sparar token i localStorage under nyckeln "token"
+  localStorage.setItem("token", token); // saves token in localStorage under the key "token"
 }
 // Authentisation & token control
 export function isAuthenticated() {
@@ -59,14 +74,14 @@ async function request(path, options = {}) {
 }
 
 // LOGIN
-export function login({ email, password }) {
+function login({ email, password }) {
   return request("/users/login", {
     method: "POST",
     body: JSON.stringify({ email, password }),
   });
 }
 // REGISTER
-export function register({
+function register({
   firstname,
   surname,
   email,
@@ -90,41 +105,135 @@ export function register({
     }),
   });
 }
-// GET ALL FAVOURITES BY USER ID
-export function getContacts() {
-  return request("/contacts", { method: "GET" });
-}
-// GET ALL PURCHASES BY USER ID
 
-// CREATE NEW CONTACT
-export function createContact(contact) {
-  return request("/contacts", {
+// FAVOURITES (authenticated)
+export function getFavourites() {
+  return request("/users/favourites", { method: "GET" });
+}
+
+export function addFavourite(isbn) {
+  return request("/users/favourites", {
     method: "POST",
-    body: JSON.stringify(contact),
+    body: JSON.stringify({ isbn }),
   });
 }
-// UPDATE A CONTACT
-export function updateContact(contactId, contact) {
-  return request(`/contacts/${contactId}`, {
-    method: "PUT",
-    body: JSON.stringify(contact),
+
+export function removeFavourite(isbn) {
+  return request(`/users/favourites/${isbn}`, { method: "DELETE" });
+}
+
+// CART (localStorage-based)
+export function getCartItems() {
+  return readCartFromStorage();
+}
+
+export function addCartItem(book) {
+  if (!book?.isbn) {
+    return getCartItems();
+  }
+
+  const cartItems = getCartItems();
+  const isbn = Number(book.isbn);
+  const existingIndex = cartItems.findIndex(
+    (item) => Number(item.isbn) === isbn,
+  );
+
+  if (existingIndex >= 0) {
+    const updatedItems = cartItems.map((item, index) =>
+      index === existingIndex
+        ? { ...item, quantity: Number(item.quantity || 0) + 1 }
+        : item,
+    );
+    saveCartToStorage(updatedItems);
+    return updatedItems;
+  }
+
+  const updatedItems = [
+    ...cartItems,
+    {
+      isbn,
+      title: book.title,
+      author: book.author,
+      price: Number(book.price) || 0,
+      quantity: 1,
+    },
+  ];
+
+  saveCartToStorage(updatedItems);
+  return updatedItems;
+}
+
+export function updateCartItemQuantity(isbn, quantity) {
+  const parsedIsbn = Number(isbn);
+  const parsedQuantity = Number(quantity);
+  const cartItems = getCartItems();
+
+  if (!Number.isFinite(parsedQuantity) || parsedQuantity <= 0) {
+    return removeCartItem(parsedIsbn);
+  }
+
+  const updatedItems = cartItems.map((item) =>
+    Number(item.isbn) === parsedIsbn
+      ? { ...item, quantity: Math.max(1, Math.floor(parsedQuantity)) }
+      : item,
+  );
+
+  saveCartToStorage(updatedItems);
+  return updatedItems;
+}
+
+export function removeCartItem(isbn) {
+  const parsedIsbn = Number(isbn);
+  const cartItems = getCartItems();
+  const updatedItems = cartItems.filter(
+    (item) => Number(item.isbn) !== parsedIsbn,
+  );
+
+  saveCartToStorage(updatedItems);
+  return updatedItems;
+}
+
+export function clearCart() {
+  saveCartToStorage([]);
+  return [];
+}
+
+export function placeOrder(orderPayload) {
+  const items = Array.isArray(orderPayload?.items) ? orderPayload.items : [];
+  const firstItem = items[0];
+
+  return request("/orders", {
+    method: "POST",
+    body: JSON.stringify({
+      ...orderPayload,
+      isbn: orderPayload?.isbn ?? firstItem?.isbn,
+      title: orderPayload?.title ?? firstItem?.title,
+      author: orderPayload?.author ?? firstItem?.author,
+      quantity: orderPayload?.quantity ?? firstItem?.quantity,
+      price: orderPayload?.price ?? firstItem?.price,
+    }),
   });
 }
-// DELETE A CONTACT
-export function deleteContact(contactId) {
-  return request(`/contacts/${contactId}`, { method: "DELETE" });
+
+export function getUserOrders() {
+  return request("/users/orders", { method: "GET" });
 }
-// HÄr ovan kan jag ta bort "export" framför varje funktion om jag fortsätter använda import api from "./api"
 
 // EXPORTS
 export default {
   login,
   register,
+  getFavourites,
+  addFavourite,
+  removeFavourite,
+  getCartItems,
+  addCartItem,
+  updateCartItemQuantity,
+  removeCartItem,
+  clearCart,
+  placeOrder,
+  getUserOrders,
   logout,
-  getContacts,
-  createContact,
-  updateContact,
-  deleteContact,
   saveToken,
   getToken,
   isAuthenticated,

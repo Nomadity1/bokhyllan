@@ -1,38 +1,60 @@
-/* STYLE OF FIRST RENDERED PAGE (main.jsx which is rendered through index.html) */
+/* GLOBAL APP STYLES */
 /* IMPORT FONTS */
 @import url("https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Luckiest+Guy&display=swap");
-/* GLOBAL STYLES  */
+/* RESET BROWSER DEFAULTS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* ROOT VARIABLES */
 :root {
-  --text: #ff9f1cff;
-  --text-soft: #ffbf69ff;
-  --text-highlight: #e76f51ff;
-  --text-dark: #264653ff;
+  /* SURFACE COLORS */
   --bg: #cbf3f0ff;
   --border: #cbf3f0ff;
-  /* --code-bg: #cbf3f0ff; */
-  /* --accent: #2ec4b6ff; */
   --accent-bg: #2ec4b6ff;
   --accent-border: #2ec4b6ff;
   --hover-bg: #2ec4b6ff;
   --header-bg: #264653ff;
   --shadow: #264653ff 0 10px 15px -3px, #264653ff 0 4px 6px -2px;
+  /* FONT COLORS AND FAMILIES */
+  --text: #ff9f1cff;
+  --text-soft: #ffbf69ff;
+  --text-highlight: #e76f51ff;
+  --text-dark: #264653ff;
   --appTexts: "Love Ya Like A Sister", system-ui, sans-serif;
   --appHeading: "Luckiest Guy", system-ui, sans-serif;
+  /* BUTTONS */
+  --auth-control-width-desktop: 170px;
+  --auth-control-width-mobile: 170px; /* TO BE DEVELOPED */
+  --auth-control-width-desktop-wider: 200px;
+  --auth-control-width-mobile-wider: 200px; /* TO BE DEVELOPED */
 
-  font: 18px/145% var(--appTexts);
-  letter-spacing: 1px;
-  color-scheme: light dark;
-  color: var(--text);
+  /* APPLY GLOBAL COLORS AND FONT STYLES */
   background: var(--bg);
+  font: 16px/125% var(--appTexts); /* Base font size and line height */
+  letter-spacing: 1px;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  /* MOBILE STYLE */ /* TO BE DEVELOPED */
+  @media (max-width: 768px) {
+    font-size: 14px;
   }
 }
+/* ROOT ELEMENT */
+#root {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 0 0 0 0;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+}
+/* DARK MODE SUPPORT */ /* TO BE DEVELOPED */
 /* @media (prefers-color-scheme: dark) {
   :root {
     --text: #ffbf69ff;
@@ -51,19 +73,3 @@
     filter: invert(1) brightness(2);
   }
 } */
-
-body {
-  margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
