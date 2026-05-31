@@ -5,6 +5,7 @@ const cors = require("cors"); // Middleware for handling Cross-Origin Resource S
 const { connect } = require("mongoose"); // ODM for MongoDB
 const connectDB = require("./config/dbConnections"); // Import the function to connect to the database
 const userRoutes = require("./routes/userRoutes"); // Import user routes
+const orderRoutes = require("./routes/orderRoutes");
 
 // CONNECT TO DATABASE
 connectDB();
@@ -40,6 +41,7 @@ app.use(express.json()); // Parse JSON från requests
 
 // USE ROUTES
 app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
 
 // ADD CENTRAL ERROR HANDLING MIDDLEWARE?
 

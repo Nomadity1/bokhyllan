@@ -1,10 +1,11 @@
 // CONTROLLER FÖR USER-ROUTES
 // IMPORTS OF PACKAGES & DEPENDENCIES
 const asyncHandler = require("express-async-handler");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 // IMPORT MODEL
 const User = require("../models/userModel");
+const Order = require("../models/orderModel");
 
 // CONTROLLER FUNCTIONS
 // @desc Register a new user
@@ -197,6 +198,14 @@ const removeFavourite = asyncHandler(async (req, res) => {
   res.status(200).json({ favourites: user.favourites });
 });
 
+// @desc Get user orders for current user
+// @route GET /api/users/orders
+// @access private
+const getUserOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find({ user: req.user.id });
+  res.status(200).json(orders);
+});
+
 // EXPORT
 module.exports = {
   registerUser,
@@ -205,4 +214,5 @@ module.exports = {
   getFavourites,
   addFavourite,
   removeFavourite,
+  getUserOrders,
 };
