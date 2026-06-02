@@ -25,12 +25,31 @@
   --appTexts: "Love Ya Like A Sister", system-ui, sans-serif;
   --appHeading: "Luckiest Guy", system-ui, sans-serif;
   /* BUTTONS */
-  --auth-control-width-desktop: 170px;
-  --auth-control-width-mobile: 170px; /* TO BE DEVELOPED */
-  --auth-control-width-desktop-wider: 200px;
-  --auth-control-width-mobile-wider: 200px; /* TO BE DEVELOPED */
+  --button-width-desktop: 160px;
+  --button-width-desktop-wider: 200px;
+  --button-background: var(--header-bg);
+  --button-color: var(--text);
+  --button-border: none;
+  --button-width: var(--button-width-desktop);
+  --button-height: 48px;
+  --button-width: 100px;
+  --button-display: flex;
+  --button-align-items: center;
+  --button-justify-content: center;
+  --button-padding: 12px;
+  --button-margin: 16px auto;
+  --button-border-radius: 1px;
+  --button-font-family: var(--appTexts);
+  --button-font-size: 16px;
+  --button-cursor: pointer;
+  --button-transition: background-color 0.3s;
+  /* MOBILE VARIANTS */
+  --button-width-mobile: 160px; /* TO BE DEVELOPED */
+  --button-width-mobile-wider: 200px; /* TO BE DEVELOPED */
+}
 
-  /* APPLY GLOBAL COLORS AND FONT STYLES */
+/* APPLY GLOBAL COLORS AND FONT STYLES */
+body {
   background: var(--bg);
   font: 16px/125% var(--appTexts); /* Base font size and line height */
   letter-spacing: 1px;
@@ -38,12 +57,47 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    text-align: left;
+    margin: 16px 32px 8px;
+    & p {
+      text-align: left;
+      margin: 8px 32 px 8 px;
+    }
+  }
   /* MOBILE STYLE */ /* TO BE DEVELOPED */
   @media (max-width: 768px) {
     font-size: 14px;
   }
 }
+button {
+  background: var(--button-background);
+  color: var(--button-color);
+  border: var(--button-border);
+  width: var(--button-width);
+  height: var(--button-height);
+  max-width: var(--button-max-width);
+  display: var(--button-display);
+  align-items: var(--button-align-items);
+  justify-content: var(--button-justify-content);
+  padding: var(--button-padding);
+  margin: var(--button-margin);
+  border-radius: var(--button-border-radius);
+  font-family: var(--button-font-family);
+  font-size: var(--button-font-size);
+  cursor: var(--button-cursor);
+  transition: var(--button-transition);
+}
+button:hover {
+  background-color: var(--accent-bg);
+  color: var(--text-highlight);
+  font-weight: bold;
+}
+
 /* ROOT ELEMENT */
 #root {
   display: flex;

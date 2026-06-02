@@ -27,7 +27,7 @@
     background: var(--header-bg);
     color: var(--text);
     border: none;
-    width: var(--auth-control-width-desktop);
+    width: var(--button-width-desktop);
     height: 48px;
     max-width: 100%;
     display: flex;
@@ -71,7 +71,7 @@
   & .registration-navbar a,
   & .login-navbar a {
     display: block;
-    width: var(--auth-control-width-desktop);
+    width: var(--button-width-desktop);
     height: 48px;
     max-width: 100%;
     margin-inline: auto;
@@ -109,7 +109,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--auth-control-width-desktop);
+  width: var(--button-width-desktop);
   height: 48px;
   max-width: 100%;
   margin-inline: auto;
@@ -142,7 +142,7 @@
   .home-link,
   .registration-navbar a,
   .login-navbar a {
-    width: var(--auth-control-width-mobile);
+    width: var(--button-width-mobile);
     height: 44px;
   }
 }

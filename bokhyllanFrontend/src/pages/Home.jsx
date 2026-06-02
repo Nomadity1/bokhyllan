@@ -34,6 +34,9 @@ function Home() {
           title={categoryName}
           items={categoryBooks}
         />
+        // Produktlista
+        // • Visa alla produkter
+        // • Kunna filtrera på kategori (t.ex. kläder, teknik, mat etc.)
       ))}
     </div>
   );

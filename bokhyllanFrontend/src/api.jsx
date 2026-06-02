@@ -3,25 +3,12 @@
 // IMPORTS
 // No imports!
 
-// VARIABLE for our base-URL to the app-API
+// VARIABLES for our base-URL to the app-API and for localStorage key for cart items
 const API_BASE = `${window.location.protocol}//${window.location.hostname}:3000/api`;
 const CART_STORAGE_KEY = "bokhyllan_cart";
 
-function readCartFromStorage() {
-  try {
-    const raw = localStorage.getItem(CART_STORAGE_KEY);
-    const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveCartToStorage(items) {
-  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
-}
-
 // FUNCTIONS
+// USER MANAGEMENT & AUTHENTICATION FUNCTIONS
 // localStorage-keys to get and set token
 export function getToken() {
   return localStorage.getItem("token"); // returns token or null if it doesn't exist
@@ -72,7 +59,6 @@ async function request(path, options = {}) {
   }
   return data;
 }
-
 // LOGIN
 function login({ email, password }) {
   return request("/users/login", {
@@ -106,38 +92,45 @@ function register({
   });
 }
 
-// FAVOURITES (authenticated)
+// FAVOURITES MANAGEMENT FUNCTIONS FOR AUTHENTICATED USERS
 export function getFavourites() {
   return request("/users/favourites", { method: "GET" });
 }
-
 export function addFavourite(isbn) {
   return request("/users/favourites", {
     method: "POST",
     body: JSON.stringify({ isbn }),
   });
 }
-
 export function removeFavourite(isbn) {
   return request(`/users/favourites/${isbn}`, { method: "DELETE" });
 }
 
-// CART (localStorage-based)
+// CART LOCAL STORAGE MANAGEMENT FUNCTIONS
+function readCartFromStorage() {
+  try {
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+function saveCartToStorage(items) {
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+}
 export function getCartItems() {
   return readCartFromStorage();
 }
-
 export function addCartItem(book) {
   if (!book?.isbn) {
     return getCartItems();
   }
-
   const cartItems = getCartItems();
   const isbn = Number(book.isbn);
   const existingIndex = cartItems.findIndex(
     (item) => Number(item.isbn) === isbn,
   );
-
   if (existingIndex >= 0) {
     const updatedItems = cartItems.map((item, index) =>
       index === existingIndex
@@ -147,7 +140,6 @@ export function addCartItem(book) {
     saveCartToStorage(updatedItems);
     return updatedItems;
   }
-
   const updatedItems = [
     ...cartItems,
     {
@@ -158,50 +150,42 @@ export function addCartItem(book) {
       quantity: 1,
     },
   ];
-
   saveCartToStorage(updatedItems);
   return updatedItems;
 }
-
 export function updateCartItemQuantity(isbn, quantity) {
   const parsedIsbn = Number(isbn);
   const parsedQuantity = Number(quantity);
   const cartItems = getCartItems();
-
   if (!Number.isFinite(parsedQuantity) || parsedQuantity <= 0) {
     return removeCartItem(parsedIsbn);
   }
-
   const updatedItems = cartItems.map((item) =>
     Number(item.isbn) === parsedIsbn
       ? { ...item, quantity: Math.max(1, Math.floor(parsedQuantity)) }
       : item,
   );
-
   saveCartToStorage(updatedItems);
   return updatedItems;
 }
-
 export function removeCartItem(isbn) {
   const parsedIsbn = Number(isbn);
   const cartItems = getCartItems();
   const updatedItems = cartItems.filter(
     (item) => Number(item.isbn) !== parsedIsbn,
   );
-
   saveCartToStorage(updatedItems);
   return updatedItems;
 }
-
 export function clearCart() {
   saveCartToStorage([]);
   return [];
 }
-
+// ORDER MANAGEMENT FUNCTIONS 
+// PLACING ORDERS 
 export function placeOrder(orderPayload) {
   const items = Array.isArray(orderPayload?.items) ? orderPayload.items : [];
   const firstItem = items[0];
-
   return request("/orders", {
     method: "POST",
     body: JSON.stringify({
@@ -214,7 +198,7 @@ export function placeOrder(orderPayload) {
     }),
   });
 }
-
+// GETTING USER'S PAST ORDERS
 export function getUserOrders() {
   return request("/users/orders", { method: "GET" });
 }

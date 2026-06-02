@@ -25,7 +25,7 @@ function Register() {
     // Undvik att sidan laddas om när formuläret skickas
     e.preventDefault();
     setError("");
-    // ANROPA API FÖR REGISTRERING
+    // CALL API TO REGISTER
     try {
       await api.register({
         firstname,

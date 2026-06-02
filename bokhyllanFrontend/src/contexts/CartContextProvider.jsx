@@ -8,31 +8,27 @@ import { CartContext } from "./cartContext.js";
 function CartContextProvider({ children }) {
   // State for keeping track of cart items (hydrated from localStorage through api)
   const [cartItems, setCartItems] = useState(api.getCartItems());
-
+  // Functions to manage cart state and synchronize with localStorage through api
   function addCartItem(book) {
     const updatedItems = api.addCartItem(book);
     setCartItems(updatedItems);
   }
-
   function updateCartItemQuantity(isbn, quantityValue) {
     const updatedItems = api.updateCartItemQuantity(isbn, quantityValue);
     setCartItems(updatedItems);
   }
-
   function removeCartItem(isbn) {
     const updatedItems = api.removeCartItem(isbn);
     setCartItems(updatedItems);
   }
-
   function clearCart() {
     const updatedItems = api.clearCart();
     setCartItems(updatedItems);
   }
-
   function refreshCart() {
     setCartItems(api.getCartItems());
   }
-
+  // Variable to calculate the total price of the items in the cart, memoized for performance
   const cartTotal = useMemo(
     () =>
       cartItems.reduce(
@@ -42,7 +38,7 @@ function CartContextProvider({ children }) {
       ),
     [cartItems],
   );
-
+  // Variable to hold the values and functions that will be provided to the components consuming this context
   const value = {
     cartItems,
     cartTotal,

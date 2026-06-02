@@ -1,11 +1,9 @@
-import BookCard from "../home/BookCard";
-
+// COMPONENT FOR USER'S FAVORITES (placeholder)
 function Favourites() {
   return (
     <div>
-      <h2>Favourites Page</h2>
-      <p>Soon a list of your favourites will be shown as cards.</p>
-      <BookCard />
+      <h3>Favoriter</h3>
+      <p>Snart kommer en lista över dina favoriter att visas.</p>
     </div>
   );
 }

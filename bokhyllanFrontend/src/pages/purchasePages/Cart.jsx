@@ -1,16 +1,22 @@
 // CART PAGE
-// IMPORT SECTIONS
-import CartList from "../../sections/purchaseSections/CartList";
-import CartSummary from "../../sections/purchaseSections/CartSummary";
+// IMPORTS
+import CartList from "../../components/purchaseflow/CartList";
+import CartSummary from "../../components/purchaseflow/CartSummary";
+import CartConfirmation from "../../components/purchaseflow/CartContinjue";
+import "./cartCheckoutConfirm.css";
 
 // FUNCTION
 function Cart() {
+  // CONTENT TO BE RENDERED
   return (
-    <div>
+    <div className="cart-container">
+      <h2>Varukorg</h2>
       <CartList />
       <CartSummary />
+      <CartConfirmation />
     </div>
   );
 }
+
 // EXPORT
 export default Cart;
