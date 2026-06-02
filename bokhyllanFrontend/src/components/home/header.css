@@ -1,56 +1,123 @@
-/* HEADER */
+/* HEADER STYLES */
+/* ENTIRE HEADER CONTAINER */
 .header-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 12px;
   background: var(--header-bg);
   border-bottom: 1px solid var(--header-bg);
-  @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
-    gap: 1px;
-    padding: 12px 8px;
+  padding-top: 6px;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-bottom: 0px;
+  @media (max-width: 1024px) {
+    padding-top: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 0px;
   }
-  & .header-logo-icon {
-    width: 70px;
-    height: 70px;
+  @media (max-width: 768px) {
+    padding-top: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 0px;
+  }
+  @media (max-width: 480px) {
+    padding-top: 2px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 0px;
+  }
+  /* CONTAINER FOR LOGO AND TITLE */
+  .header-subcontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 72px;
+  }
+  .header-logo {
+    width: 56px;
+    height: 56px;
     object-fit: cover; /* Ensures the image covers the entire area without distortion */
     border-radius: 50%; /* Makes the image circular */
   }
-  & .header-title {
+  .header-title {
     font-family: var(--appHeading);
-    font-size: 36px;
+    font-size: 48px;
     color: var(--text);
     margin: 0;
+    @media (max-width: 1024px) {
+      font-size: 36px; /* Adjusts the header title font size on tablets and smaller desktops */
+    }
     @media (max-width: 768px) {
-      /* STYLE FOR MOBILE DEVICES */
+      display: none; /* Hides the header title on large mobile devices or small tablets */
+    }
+    @media (max-width: 480px) {
+      display: none; /* Hides the header title on smaller mobile devices */
     }
   }
-  & .header-menu-icon-container {
+  /* CONTAINER FOR NAVIGATION LINKS */
+  .header-link-icons-container {
     display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
     align-items: center;
-    gap: 20px;
+    justify-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 380px;
+    flex: 0 0 auto;
+    @media (max-width: 1024px) {
+      width: 300px; /* Adjusts the width of the header link icons container on tablets and smaller desktops */
+    }
+    @media (max-width: 768px) {
+      width: 240px; /* Adjusts the width of the header link icons container on large mobile devices and small tablets */
+    }
   }
-  & .header-menu-icon-link {
-    display: inline-flex;
+  .header-link-icons-subcontainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+  }
+  .header-link-icons {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 6px;
     text-decoration: none;
     outline: none;
+    min-width: 72px;
+    height: 46px;
+    box-sizing: border-box;
   }
-  & .header-menu-icon-link:hover .header-menu-icon,
-  & .header-menu-icon-link:focus-visible .header-menu-icon {
+  .header-link-icons-button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .header-link-icons:hover .header-link-icons,
+  .header-link-icons:focus-visible .header-link-icons {
     filter: brightness(0) saturate(100%) invert(57%) sepia(39%) saturate(932%)
       hue-rotate(327deg) brightness(96%) contrast(92%);
     transform: scale(1.3);
   }
-  & .header-menu-icon {
-    width: 36px;
-    height: 36px;
+  .header-link-icons-button:hover .header-link-icons,
+  .header-link-icons-button:focus-visible .header-link-icons {
+    filter: brightness(0) saturate(100%) invert(57%) sepia(39%) saturate(932%)
+      hue-rotate(327deg) brightness(96%) contrast(92%);
+    transform: scale(1.3);
+  }
+  .header-link-icons {
+    width: 28px;
+    height: 28px;
     object-fit: contain;
     transition:
       filter 0.3s,
@@ -58,12 +125,39 @@
     filter: brightness(0) saturate(100%) invert(72%) sepia(70%) saturate(2310%)
       hue-rotate(344deg) brightness(102%) contrast(102%);
   }
-  & .header-menu-icon-text {
+  .header-link-icons-text {
     margin: 0;
     padding: 0;
     color: var(--text);
     font-size: 12px;
-    line-height: 1.0;
+    line-height: 1;
     text-align: center;
+    @media (max-width: 1024px) {
+      display: none; /* Hides the header link icons text on tablets and smaller desktops */
+    }
+    @media (max-width: 768px) {
+      display: none; /* Hides the header link icons text on large mobile devices and small tablets */
+    }
+    @media (max-width: 480px) {
+      display: none; /* Hides the header link icons text on smaller mobile devices */
+    }
+  }
+  .header-link-icons-placeholder {
+    width: 0;
+    height: 46px;
+    visibility: hidden;
+    display: inline-block;
+  }
+  .mobile-nav-menu-button {
+    display: none;
+    @media (max-width: 1024px) {
+      display: none; /* Hides the mobile navigation menu on tablets and larger desktops */
+    }
+    @media (max-width: 768px) {
+      display: inline-flex; /* Shows the mobile navigation menu on large mobile devices and small tablets */
+    }
+    @media (max-width: 480px) {
+      display: inline-flex; /* Shows the mobile navigation menu on smaller mobile devices */
+    }
   }
 }

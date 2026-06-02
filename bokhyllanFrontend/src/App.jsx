@@ -1,8 +1,11 @@
 // IMPORT PACKAGES & DEPENDENCIES
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 // IMPORT PAGES
 import Home from "./pages/Home";
 import BookTip from "./pages/publicPages/BookTip";
+import Contact from "./pages/publicPages/Contact";
+import About from "./pages/publicPages/About";
 import Register from "./pages/publicPages/Registration";
 import Login from "./pages/publicPages/Login";
 import Cart from "./pages/purchasePages/Cart";
@@ -24,6 +27,16 @@ import "./App.css";
 
 // FUNCTION
 function App() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  function toggleMobileMenu() {
+    setMobileMenuOpen((previous) => !previous);
+  }
+
+  function closeMobileMenu() {
+    setMobileMenuOpen(false);
+  }
+
   // // useAuth hook hämtar statusen på authed från AuthContext
   // const { authed } = useAuth();
   // CONTENT TO BE RENDERED
@@ -31,9 +44,12 @@ function App() {
     <Router>
       <div className="app-container">
         {/* HEADER */}
-        <Header />
+        <Header
+          onMenuToggle={toggleMobileMenu}
+          isMobileMenuOpen={mobileMenuOpen}
+        />
         {/* NAVIGATION */}
-        <Navbar />
+        <Navbar isMobileMenuOpen={mobileMenuOpen} onNavigate={closeMobileMenu} />
         {/* MAIN */}
         <main className="main-container">
           {/* ROUTES  */}
@@ -41,11 +57,15 @@ function App() {
             {/* Public routes */}
             <Route path="/" element={<Home />} />
             <Route path="/tips" element={<BookTip />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            {/* Purchase flow routes */}
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/confirmation" element={<Confirmation />} />
+            {/* Registration & Authentication routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             {/* Protected route using RequireAuth wrapper component */}
             <Route
               path="/profile"

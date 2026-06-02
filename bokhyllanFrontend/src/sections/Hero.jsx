@@ -1,4 +1,6 @@
 // HERO COMPONENT
+// IMPORT DEPENDENCIES
+import "./hero.css";
 // IMPORT FROM PUBLIC FOLDER
 const heroImage = "/images/reader-on-train.png";
 // FUNCTION

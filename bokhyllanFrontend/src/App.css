@@ -24,7 +24,6 @@ body,
   overflow-y: auto; /* Allows only main content to scroll */
 }
 
-
 /* FONTS */
 h1 {
   font-family: var(--appHeading);
