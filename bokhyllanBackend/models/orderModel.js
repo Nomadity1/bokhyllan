@@ -32,6 +32,7 @@ const orderItemSchema = new mongoose.Schema(
 
 const orderSchema = new mongoose.Schema(
   {
+    // Optional reference to a User, can be null for guest checkouts
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
