@@ -1,12 +1,13 @@
 // COMPONENT FOR DISPLAYING A BOOK IN A CARD FORMAT
-// Takes the object book as a prop
+// Takes the book object as a prop
+// IMPORT DEPENDENCIES
+import useCart from "../../hooks/useCart";
 // IMPORT FROM PUBLIC FOLDER
 const favouriteIconRegular = "/icons/heart-regular-full.svg";
 const favouriteIconFull = "/icons/heart-solid-full.svg";
 const buyButtonIconFull = "/icons/plus-solid-full.svg";
 // IMPORT STYLE
 import "./bookCard.css";
-import useCart from "../../hooks/useCart";
 
 function BookCard({ book, authed, isFavourite, onToggleFavourite }) {
   const { addCartItem } = useCart();

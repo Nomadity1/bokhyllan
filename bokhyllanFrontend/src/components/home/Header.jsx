@@ -2,6 +2,7 @@
 // IMPORT DEPENDENCIES
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useCart from "../../hooks/useCart";
 import "./header.css";
 
 // IMPORT FROM PUBLIC FOLDER
@@ -16,7 +17,12 @@ function Header({ onMenuToggle, isMobileMenuOpen }) {
   // const Logo = "B";
   const Title = "Bokhyllan";
   const { authed, logoutUser } = useAuth();
+  const { cartItems } = useCart();
   const navigate = useNavigate();
+  const cartItemCount = cartItems.reduce(
+    (sum, item) => sum + Number(item.quantity || 1),
+    0,
+  );
   // Function to handle user logout
   function handleLogout() {
     const confirmed = window.confirm("Vill du logga ut?");
@@ -72,7 +78,7 @@ function Header({ onMenuToggle, isMobileMenuOpen }) {
               aria-hidden="true"
               className="header-icon-icon"
             />
-            <p className="header-icon-text">Varukorg (0)</p>
+            <p className="header-icon-text">Varukorg ({cartItemCount})</p>
           </Link>
         </div>
         {/* Logout icon is only visible for logged-in users */}

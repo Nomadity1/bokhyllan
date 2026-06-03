@@ -53,4 +53,5 @@
   color: var(--text-dark);
   padding: 12px;
   border-radius: 4px;
+  width: 60%;
 }

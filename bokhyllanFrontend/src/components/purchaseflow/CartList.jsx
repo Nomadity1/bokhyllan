@@ -28,7 +28,7 @@ function CartList() {
         <p>Din varukorg är tom.</p>
       ) : (
         <>
-          <div className="cart-list-actions">
+          <div className="cart-list-buttons">
             <button
               type="button"
               className="cart-trash-button"

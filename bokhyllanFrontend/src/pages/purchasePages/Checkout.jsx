@@ -2,6 +2,7 @@
 // IMPORTS
 import { useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import api from "../../api";
 import useCart from "../../hooks/useCart";
@@ -185,6 +186,18 @@ function Checkout() {
             </button>
           </form>
         )}
+      </div>
+      <div className="navbar">
+        <p>
+          <Link to="/" className="navbar-link">
+            Fortsätt handla
+          </Link>
+        </p>
+        <p>
+          <Link to="/cart" className="navbar-link">
+            Tillbaka
+          </Link>
+        </p>
       </div>
     </div>
   );

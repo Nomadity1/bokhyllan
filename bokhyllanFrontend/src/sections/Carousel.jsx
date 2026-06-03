@@ -10,16 +10,20 @@ const caretLeftIcon = "/icons/caret-left-solid-full.svg";
 const caretRightIcon = "/icons/caret-right-solid-full.svg";
 
 function Carousel({ title, items }) {
+  // State function to keep track on authentication
   const { authed } = useAuth();
+  // State function to manage favourites and carousel scroll state
   const [favouriteSet, setFavouriteSet] = useState(new Set());
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  // Variable to reference the carousel container for scroll management
   const carouselRef = useRef(null);
-
+  // Function to update the state of scroll buttons based on the current scroll position of the carousel
   const updateScrollState = useCallback(() => {
     const element = carouselRef.current;
     if (!element) return;
-
+    // Function to check if the carousel can scroll left or right based
+    // on the current scroll position and the maximum scroll position
     const maxScrollLeft = element.scrollWidth - element.clientWidth;
     setCanScrollLeft(element.scrollLeft > 2);
     setCanScrollRight(element.scrollLeft < maxScrollLeft - 2);

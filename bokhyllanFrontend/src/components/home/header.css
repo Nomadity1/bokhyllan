@@ -76,8 +76,6 @@
   align-items: center;
   justify-items: center;
   justify-content: space-between;
-  /* check this one */
-  /* width: 380px; */
   flex: 0 0 auto;
   @media (max-width: 1024px) {
     width: 300px; /* Adjusts the width of the header link icons container on tablets and smaller desktops */
@@ -144,24 +142,20 @@
     padding: 2px;
   }
 }
+/* Make both icon and text enlarge when hover */
 .header-icon-button:hover,
-.header-icon-button:focus-visible {
+.header-icon-link:hover {
   filter: brightness(0) saturate(100%) invert(57%) sepia(39%) saturate(932%)
     hue-rotate(327deg) brightness(96%) contrast(92%);
   transform: scale(1.3);
 }
-.header-icon-link:hover .header-icon-icon,
-.header-icon-link:focus-visible .header-icon-icon {
+/* Make both icon and text enlarge when focused with keyboard navigation */
+.header-icon-button:focus-visible,
+.header-icon-link:focus-visible {
   filter: brightness(0) saturate(100%) invert(57%) sepia(39%) saturate(932%)
     hue-rotate(327deg) brightness(96%) contrast(92%);
   transform: scale(1.3);
 }
-/* .header-icon-button:hover .header-icon-button,
-.header-icon-button:focus-visible .header-icon-button {
-  filter: brightness(0) saturate(100%) invert(57%) sepia(39%) saturate(932%)
-    hue-rotate(327deg) brightness(96%) contrast(92%);
-  transform: scale(1.3);
-} */
 .header-icon-text {
   margin: 0;
   padding: 0;

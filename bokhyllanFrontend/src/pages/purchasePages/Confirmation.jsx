@@ -9,9 +9,9 @@ function Confirmation() {
     <div>
       <h2>Tack för ditt köp!</h2>
       <p className="info-message">Funktionalitet inte implementerad än</p>
-      <div className="confirmation-navbar">
+      <div className="navbar">
         <p>
-          <Link to="/" className="home-link">
+          <Link to="/" className="navbar-link">
             Tillbaka till start
           </Link>
         </p>

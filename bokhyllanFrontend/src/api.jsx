@@ -94,16 +94,16 @@ function register({
 
 // FAVOURITES MANAGEMENT FUNCTIONS FOR AUTHENTICATED USERS
 export function getFavourites() {
-  return request("/users/favourites", { method: "GET" });
+  return request("/users/current/favourites", { method: "GET" });
 }
 export function addFavourite(isbn) {
-  return request("/users/favourites", {
+  return request("/users/current/favourites", {
     method: "POST",
     body: JSON.stringify({ isbn }),
   });
 }
 export function removeFavourite(isbn) {
-  return request(`/users/favourites/${isbn}`, { method: "DELETE" });
+  return request(`/users/current/favourites/${isbn}`, { method: "DELETE" });
 }
 
 // CART LOCAL STORAGE MANAGEMENT FUNCTIONS
@@ -181,8 +181,8 @@ export function clearCart() {
   saveCartToStorage([]);
   return [];
 }
-// ORDER MANAGEMENT FUNCTIONS 
-// PLACING ORDERS 
+// ORDER MANAGEMENT FUNCTIONS
+// PLACING ORDERS
 export function placeOrder(orderPayload) {
   const items = Array.isArray(orderPayload?.items) ? orderPayload.items : [];
   const firstItem = items[0];

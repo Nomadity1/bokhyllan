@@ -8,16 +8,17 @@
   box-sizing: border-box;
   flex: 0 0 220px;
   position: relative;
-  background-color: rgb(
+  /* background-color: rgb(
     38,
     70,
     83,
-    0.15
-  ); /* rgb(38, 70, 83) = #264653ff = var(--header-bg); */
+    0.15 */
+  /* );  */
+  /* rgb(38, 70, 83) = #264653ff = var(--header-bg); */
   border: 1px solid rgb(38, 70, 83, 0.4);
   border-radius: 4px;
-  padding: 8px;
-  font-size: 14px;
+  padding: 8px 8px;
+  font-size: 0.8rem;
   color: var(--text-dark);
   text-align: left;
   width: 220px;
@@ -32,10 +33,22 @@
   }
   & .book-card-lower {
     display: grid;
-    grid-template-rows: [row1-start] 50% [row1-end] 20px [last-line] 20%; /* distribution between rows */
+    grid-template-rows: auto auto auto;
     text-align: left;
     justify-items: start;
+    align-content: start;
     gap: 4px;
+  }
+
+  & .book-card-lower-title h3,
+  & .book-card-lower-author p,
+  & .book-card-lower-price p {
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  & .book-card-lower-title h3 {
+    overflow-wrap: anywhere;
   }
 }
 /* FAVOURITE & BUY BUTTON */
@@ -60,13 +73,13 @@
     transition:
       filter 0.3s,
       transform 0.2s;
-    filter: brightness(0) saturate(100%) invert(72%) sepia(70%) saturate(2310%)
-      hue-rotate(344deg) brightness(102%) contrast(102%);
+    filter: brightness(0) saturate(100%) invert(20%) sepia(23%) saturate(895%)
+      hue-rotate(141deg) brightness(94%) contrast(93%);
   }
 }
 .favourite-button:hover .favourite-icon {
-  filter: brightness(0) saturate(100%) invert(72%) sepia(70%) saturate(2310%)
-    hue-rotate(344deg) brightness(120%) contrast(120%);
+  filter: brightness(0) saturate(100%) invert(20%) sepia(23%) saturate(895%)
+    hue-rotate(141deg) brightness(94%) contrast(93%);
   transform: scale(1.1);
 }
 .buy-button {
@@ -86,10 +99,11 @@
     transition:
       filter 0.3s,
       transform 0.2s;
-    filter: brightness(0) saturate(100%) invert(72%) sepia(70%) saturate(2310%)
-      hue-rotate(344deg) brightness(102%) contrast(102%);
+    filter: brightness(0) saturate(100%) invert(20%) sepia(23%) saturate(895%)
+      hue-rotate(141deg) brightness(94%) contrast(93%);
   }
 }
 .buy-button:hover {
-  color: var(--primary-color);
+  filter: brightness(0) saturate(100%) invert(20%) sepia(23%) saturate(895%)
+    hue-rotate(141deg) brightness(94%) contrast(93%);
 }

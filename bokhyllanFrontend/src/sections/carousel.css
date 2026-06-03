@@ -7,7 +7,7 @@
   padding: 32px;
 }
 .carousel-title {
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 16px;
   text-align: left;
   margin-left: 48px;
@@ -43,11 +43,11 @@
   height: 60px;
   object-fit: contain;
   opacity: 1;
-  filter: brightness(0) saturate(100%) invert(72%) sepia(70%) saturate(2310%)
-    hue-rotate(344deg) brightness(102%) contrast(102%);
+  filter: brightness(0) saturate(100%) invert(20%) sepia(23%) saturate(895%)
+    hue-rotate(141deg) brightness(94%) contrast(93%);
 }
 .carousel-caret-button:disabled .carousel-caret-icon {
-  opacity: 0.35;
-  filter: blur(0.5px) brightness(0) saturate(100%) invert(72%) sepia(70%)
-    saturate(2310%) hue-rotate(344deg) brightness(102%) contrast(102%);
+  opacity: 0.3;
+  filter: brightness(0) saturate(100%) invert(20%) sepia(23%) saturate(895%)
+    hue-rotate(141deg) brightness(94%) contrast(93%);
 }

@@ -1,0 +1,51 @@
+/* STYLES FOR SHOWCASE */
+.showcase-container {
+  background: var(--text);
+  color: var(--text-dark);
+}
+/* .showcase-title {
+  font-size: 24px;
+  margin-bottom: 16px;
+  text-align: left;
+  margin-left: 48px;
+}
+.showcase-carets {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 40px;
+  align-items: stretch;
+  gap: 8px;
+}
+.showcase-inner {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+.showcase-inner::-webkit-scrollbar {
+  display: none;
+}
+.showcase-caret-button {
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+.showcase-caret-button:disabled {
+  cursor: not-allowed;
+}
+*/
+/* .showcase-caret-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(20%) sepia(23%) saturate(895%)
+    hue-rotate(141deg) brightness(94%) contrast(93%);
+}
+.showcase-caret-button:disabled .showcase-caret-icon {
+  opacity: 0.3;
+  filter: brightness(0) saturate(100%) invert(20%) sepia(23%) saturate(895%)
+    hue-rotate(141deg) brightness(94%) contrast(93%);
+}  */
