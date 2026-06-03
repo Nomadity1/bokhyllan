@@ -55,7 +55,11 @@ async function request(path, options = {}) {
   }
   // Example status codes: 404, 401, 500
   if (!response.ok) {
-    throw new Error("Request failed.");
+    const serverMessage =
+      typeof data === "string"
+        ? data
+        : data?.message || data?.error || "Request failed.";
+    throw new Error(serverMessage);
   }
   return data;
 }

@@ -50,3 +50,73 @@ p {
   margin: 0;
   padding: 0;
 }
+
+.home-filter-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 32px 0;
+}
+
+.home-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-filter-label {
+  font: 700 0.8rem/1 var(--appTexts);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  opacity: 0.6;
+  min-width: 100px;
+}
+
+.home-filter-button {
+  width: auto;
+  height: auto;
+  border: 1px solid var(--header-bg);
+  background: var(--bg);
+  color: var(--text-dark);
+  font: 600 0.9rem/1 var(--appTexts);
+  letter-spacing: 0.4px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.home-filter-button:hover,
+.home-filter-button:focus-visible {
+  background: var(--accent-bg);
+  border-color: var(--accent-bg);
+  color: var(--text-dark);
+}
+
+.home-filter-button.active {
+  background: var(--header-bg);
+  border-color: var(--header-bg);
+  color: var(--text-soft);
+}
+
+@media (max-width: 768px) {
+  .home-filter-menu {
+    padding: 12px 12px 0;
+    gap: 6px;
+  }
+
+  .home-filter-label {
+    min-width: 80px;
+    font-size: 0.75rem;
+  }
+
+  .home-filter-button {
+    padding: 7px 10px;
+    font-size: 0.8rem;
+  }
+}
