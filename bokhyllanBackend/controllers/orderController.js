@@ -1,6 +1,7 @@
 // CONTROLLER FUNCTIONS FOR ORDERS
 const asyncHandler = require("express-async-handler");
 const Order = require("../models/orderModel");
+const User = require("../models/userModel");
 
 // HELPER FUNCTIONS
 // Function to normalize order items from different request formats
@@ -40,7 +41,23 @@ const createOrder = asyncHandler(async (req, res) => {
     quantity: Math.max(1, Math.floor(Number(item.quantity || 1))),
     price: Number(item.price || 0),
   }));
-  const { postalcode, city, postaladdress, email, phone } = req.body;
+  let { postalcode, city, postaladdress, email, phone } = req.body;
+
+  // For authenticated users, allow checkout without re-entering profile data.
+  if (req.user?.id) {
+    const currentUser = await User.findById(req.user.id).select(
+      "email postalAddress postalCode city phone",
+    );
+
+    if (currentUser) {
+      postalcode = postalcode || currentUser.postalCode;
+      city = city || currentUser.city;
+      postaladdress = postaladdress || currentUser.postalAddress;
+      email = email || currentUser.email;
+      phone = phone || currentUser.phone;
+    }
+  }
+
   if (!items.length) {
     res.status(400);
     throw new Error("Order must contain at least one item");
