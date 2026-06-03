@@ -250,5 +250,41 @@
     "isbn": 9789188699572,
     "imgId": "9789188699572.jpg",
     "price": 150
+  },
+  {
+    "title": "Jätte-spännande bok",
+    "author": "Linda-Maria Modig",
+    "publicationYear": 2026,
+    "description": "En jättespännande jättepåhittad bok av en ickeförfattare.",
+    "mainCategory": "Nyutkommet",
+    "targetAudience": ["Vuxen", "Ungdom"],
+    "subCategories": [""],
+    "isbn": 9999111222333,
+    "imgId": "nybok1.jpg",
+    "price": 750
+  },
+  {
+    "title": "Jätte-viktig bok",
+    "author": "Linda-Maria Modig",
+    "publicationYear": 2026,
+    "description": "En jätteviktig jättepåhittad bok av en ickeförfattare.",
+    "mainCategory": "Nyutkommet",
+    "targetAudience": ["Vuxen", "Ungdom"],
+    "subCategories": [""],
+    "isbn": 9999111222444,
+    "imgId": "nybok2.jpg",
+    "price": 750
+  },
+  {
+    "title": "Jätte-rolig bok",
+    "author": "Linda-Maria Modig",
+    "publicationYear": 2026,
+    "description": "En jätterolig jättepåhittad bok av en ickeförfattare.",
+    "mainCategory": "Nyutkommet",
+    "targetAudience": ["Vuxen", "Ungdom"],
+    "subCategories": [""],
+    "isbn": 9999111222555,
+    "imgId": "nybok3.jpg",
+    "price": 750
   }
 ]
