@@ -2,8 +2,14 @@
 /* IMPORT FONTS */
 @import url("https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Luckiest+Guy&display=swap");
 /* RESET BROWSER DEFAULTS */
-* {
+/* * = selects all elements, 
+*::before and *::after select the pseudo-elements for all elements */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
 }

@@ -1,4 +1,28 @@
 /* FOOTER NAVIGATION BAR */
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  padding: 12px;
+  border-top: 1px solid var(--header-bg);
+  background: var(--header-bg);
+  color: var(--text-highlight);
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 4px;
+    text-align: center;
+  }
+}
+.footer-copyright {
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}
 .footer-navbar {
   display: flex;
   gap: 0px;
@@ -6,10 +30,10 @@
   min-width: 250px;
   background: var(--header-bg);
   @media (max-width: 768px) {
-    /* Style to be developed */
+    font-size: 0.8rem;
   }
   & a {
-    flex: 1 1 0;
+    flex: 1 1 0; /* Ensures equal width for all links */
     text-align: center;
     display: block;
     box-sizing: border-box;
@@ -20,10 +44,10 @@
     border-radius: 1px;
     transition: background-color 0.3s;
     @media (max-width: 768px) {
-      .nav-container {
+      .footer-navbar {
         flex-wrap: wrap;
       }
-      .nav-container a {
+      .footer-navbar a {
         flex: 1 1 calc(50% - 12px);
       }
     }

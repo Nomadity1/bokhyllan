@@ -1,4 +1,4 @@
-// KOMPONENT FÖR FOOTER
+// COMPONENT FOR FOOTER
 // IMPORT OF PACKAGES & DEPENDENCIES
 // import React from "react";
 import { Link } from "react-router-dom";
@@ -17,7 +17,6 @@ function Footer() {
         </p>
       </div>
       <div className="footer-navbar">
-        <Link to="Contact">Kontakt</Link>
         <Link to="Terms">Villkor</Link>
         <Link to="Privacy">Integritetspolicy</Link>
       </div>
