@@ -1,12 +1,13 @@
+// PAGE COMPONENT FOR REGISTRATION
 // IMPORT OF PACKAGES & DEPENDENCIES
-import { useState } from "react"; // React hook för att hantera state
+import { useState } from "react"; // React hook for global state manager
 import { useNavigate, Link } from "react-router-dom";
 import api from "../../api";
 // IMPORT OF STYLE
 import "./regandlogin.css";
 
 // FUNCTIONS & PARAMETERS
-function Register() {
+function Registration() {
   // Stateful-variabler för att ta emot credentials och hantera error
   const [firstname, setFirstname] = useState("");
   const [surname, setSurname] = useState("");
@@ -162,4 +163,4 @@ function Register() {
   );
 }
 // EXPORTS
-export default Register;
+export default Registration;

@@ -1,23 +1,22 @@
 // IMPORTS
 import { Link } from "react-router-dom";
 // IMPORT STYLE
-import "./booktip.css";
+import "./publics.css";
 
 // FUNCTION
 function BookTip() {
   return (
-    <div className="book-tip-container">
-      <h2 className="book-tip-title">Boktips</h2>
-      <p className="book-tip-text">
+    <div className="publics-container">
+      <h2 className="publics-title">Boktips</h2>
+      <p className="publics-info-message">
         Här kommer vi att dela med oss av boktips och rekommendationer, både
         från vårt team och från våra användare. Håll utkik för att hitta din
         nästa favoritbok!
       </p>
-      <div className="booktip-navbar">
-        <p>Tillbaka till start</p>
+      <div className="publics-navbar">
         <p>
           <Link to="/" className="home-link">
-            Start
+            Tillbaka till start
           </Link>
         </p>
       </div>

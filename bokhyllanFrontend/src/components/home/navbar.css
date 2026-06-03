@@ -1,15 +1,25 @@
 /* HEADER NAVIGATION BAR */
-.desktop-nav-container {
+.navbar-container {
   display: flex;
-  gap: 0px;
+  align-items: center;
   justify-content: center;
-  min-width: 250px;
+  width: 100%;
+}
+.navbar-subcontainer {
+  display: flex;
+  width: 100%;
+}
+.desktop-navbar {
+  display: flex;
+  width: 100%;
+  gap: 0px;
+  justify-content: flex-start;
   background: var(--header-bg);
   @media (max-width: 1024px) {
-    /* No adaptation */
+    font-size: 0.875rem; /* Adjusts desktop navigation font size for tablets and smaller desktops */
   }
   @media (max-width: 768px) {
-    display: none;
+    display: none; /* Hide desktop navigation on mobile */
   }
   & a {
     flex: 1 1 0;
@@ -25,18 +35,17 @@
       background-color 0.3s,
       color 0.3s;
     @media (max-width: 768px) {
-      .desktop-nav-container {
+      .desktop-navbar {
         flex-wrap: wrap;
       }
-      .head-nav-container a {
+      .desktop-navbar a {
         flex: 1 1 calc(50% - 12px);
       }
     }
-
     &:hover,
     &:focus-visible {
       background-color: var(--accent-bg);
-      color: var(--text-highlight);
+      color: var(--text-dark);
       font-weight: bold;
     }
   }
@@ -68,7 +77,7 @@
   & a:hover,
   & a:focus-visible {
     background-color: var(--accent-bg);
-    color: var(--text-highlight);
+    color: var(--text-dark);
   }
   @media (max-width: 480px) {
     display: none;

@@ -1,21 +1,21 @@
 // IMPORTS
 import { Link } from "react-router-dom";
 // IMPORT STYLE
-import "./booktip.css";
+import "./publics.css";
 
 // FUNCTION
 function Contact() {
   return (
-    <div className="contact-container">
-      <h2 className="contact-title">Kontakt</h2>
-      <p className="contact-text">
-        Här kan du kontakta oss för frågor, feedback eller samarbeten. Vi ser fram emot att höra från dig!
+    <div className="publics-container">
+      <h2 className="publics-title">Kontakt</h2>
+      <p className="publics-info-message">
+        Här kan du kontakta oss för frågor, feedback eller samarbeten. Vi ser
+        fram emot att höra från dig!
       </p>
-      <div className="contact-navbar">
-        <p>Tillbaka till start</p>
+      <div className="publics-navbar">
         <p>
           <Link to="/" className="home-link">
-            Start
+            Tillbaka till start
           </Link>
         </p>
       </div>

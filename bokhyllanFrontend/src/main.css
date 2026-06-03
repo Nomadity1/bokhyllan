@@ -2,14 +2,12 @@
 /* IMPORT FONTS */
 @import url("https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Luckiest+Guy&display=swap");
 /* RESET BROWSER DEFAULTS */
-/* * = selects all elements, 
+/* * = selects all elements,
 *::before and *::after select the pseudo-elements for all elements */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -18,10 +16,9 @@
   /* SURFACE COLORS */
   --bg: #cbf3f0ff;
   --border: #cbf3f0ff;
+  --header-bg: #264653ff;
   --accent-bg: #2ec4b6ff;
   --accent-border: #2ec4b6ff;
-  --hover-bg: #2ec4b6ff;
-  --header-bg: #264653ff;
   --shadow: #264653ff 0 10px 15px -3px, #264653ff 0 4px 6px -2px;
   /* FONT COLORS AND FAMILIES */
   --text: #ff9f1cff;
@@ -30,89 +27,53 @@
   --text-dark: #264653ff;
   --appTexts: "Love Ya Like A Sister", system-ui, sans-serif;
   --appHeading: "Luckiest Guy", system-ui, sans-serif;
-  /* BUTTONS */
-  --button-width-desktop: 160px;
-  --button-width-desktop-wider: 200px;
-  --button-background: var(--header-bg);
-  --button-color: var(--text);
-  --button-border: none;
-  --button-width: var(--button-width-desktop);
-  --button-height: 48px;
-  --button-width: 100px;
-  --button-display: flex;
-  --button-align-items: center;
-  --button-justify-content: center;
-  --button-padding: 12px;
-  --button-margin: 16px auto;
-  --button-border-radius: 1px;
-  --button-font-family: var(--appTexts);
-  --button-font-size: 16px;
-  --button-cursor: pointer;
-  --button-transition: background-color 0.3s;
-  /* MOBILE VARIANTS */
-  --button-width-mobile: 160px; /* TO BE DEVELOPED */
-  --button-width-mobile-wider: 200px; /* TO BE DEVELOPED */
 }
 
 /* APPLY GLOBAL COLORS AND FONT STYLES */
+html,
 body {
   background: var(--bg);
-  font: 16px/125% var(--appTexts); /* Base font size and line height */
-  letter-spacing: 1px;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font: 16px/125% var(--appTexts); /* Base font style, variant, size, family and line height */
+  letter-spacing: 2px; /* Readability increases by adding space between letters */
+  font-synthesis: none; /* Prevents the browser from synthesizing bold or italic styles, ensuring that only the specified font styles are used */
+  text-rendering: optimizeLegibility; /* Enhances the readability of text by enabling kerning and ligatures */
+  -webkit-font-smoothing: antialiased; /* Improves the appearance of text on WebKit-based browsers */
+  -moz-osx-font-smoothing: grayscale; /* Improves the appearance of text on macOS */
   & h2,
   & h3,
   & h4,
   & h5,
   & h6 {
     text-align: left;
-    margin: 16px 32px 8px;
     & p {
       text-align: left;
-      margin: 8px 32 px 8 px;
     }
   }
-  /* MOBILE STYLE */ /* TO BE DEVELOPED */
-  @media (max-width: 768px) {
+  /* RESPONSIVENESS */
+  /* TABLETS & SMALL DESKTOP SCREENS */
+  @media (max-width: 1024px) {
     font-size: 14px;
   }
-}
-button {
-  background: var(--button-background);
-  color: var(--button-color);
-  border: var(--button-border);
-  width: var(--button-width);
-  height: var(--button-height);
-  max-width: var(--button-max-width);
-  display: var(--button-display);
-  align-items: var(--button-align-items);
-  justify-content: var(--button-justify-content);
-  padding: var(--button-padding);
-  margin: var(--button-margin);
-  border-radius: var(--button-border-radius);
-  font-family: var(--button-font-family);
-  font-size: var(--button-font-size);
-  cursor: var(--button-cursor);
-  transition: var(--button-transition);
-}
-button:hover {
-  background-color: var(--accent-bg);
-  color: var(--text-highlight);
-  font-weight: bold;
+  /* MOBILE DEVICES & SMALL TABLETS */
+  @media (max-width: 768px) {
+    font-size: 12px;
+    letter-spacing: 1px; /* Reduces letter spacing for smaller screens to improve readability */
+  }
+  /* SMALLER MOBILE DEVICES */
+  @media (max-width: 480px) {
+    font-size: 12px;
+    letter-spacing: 1px; /* Further reduces letter spacing for very small screens */
+  }
 }
 
-/* ROOT ELEMENT */
+/* ROOT ELEMENT */ /* Where the your entire React component tree is mounted */
 #root {
   display: flex;
-  flex-direction: column;
-  max-width: 100%;
-  margin: 0 0 0 0;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  min-height: 100svh; /* Full viewport height, including mobile browser UI */
+  min-width: 100svw; /* Full viewport width, including mobile browser UI */
+  flex-direction: column; /* Stacks header, main content and footer vertically */
 }
 /* DARK MODE SUPPORT */ /* TO BE DEVELOPED */
 /* @media (prefers-color-scheme: dark) {

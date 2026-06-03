@@ -3,161 +3,197 @@
 .header-container {
   display: flex;
   flex-direction: row;
+  /* align-content: center; */
   align-items: center;
+  justify-items: center;
   justify-content: space-between;
   background: var(--header-bg);
   border-bottom: 1px solid var(--header-bg);
-  padding-top: 6px;
-  padding-left: 18px;
-  padding-right: 18px;
-  padding-bottom: 0px;
+  padding-top: 18px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 9px;
   @media (max-width: 1024px) {
-    padding-top: 4px;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-bottom: 0px;
+    padding-top: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 6px;
   }
   @media (max-width: 768px) {
-    padding-top: 3px;
-    padding-left: 6px;
-    padding-right: 6px;
-    padding-bottom: 0px;
+    padding-top: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 4px;
   }
   @media (max-width: 480px) {
-    padding-top: 2px;
-    padding-left: 3px;
-    padding-right: 3px;
-    padding-bottom: 0px;
+    padding-top: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 2px;
   }
-  /* CONTAINER FOR LOGO AND TITLE */
-  .header-subcontainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 72px;
+}
+/* CONTAINER FOR LOGO AND TITLE */
+.header-subcontainer,
+.header-logo-container,
+.header-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+}
+.header-logo {
+  font-size: 64px;
+  text-align: left;
+  margin-left: 12px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1;
+  text-shadow: -4px 4px 8px rgba(08, 15, 17, 1);
+}
+.header-title {
+  font-size: 48px;
+  text-align: center;
+  margin-left: 36px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1;
+  text-shadow: -2px 2px 4px rgba(08, 15, 17, 0.6);
+  @media (max-width: 1024px) {
+    font-size: 36px; /* Adjusts the header title font size on tablets and smaller desktops */
   }
-  .header-logo {
-    width: 56px;
-    height: 56px;
-    object-fit: cover; /* Ensures the image covers the entire area without distortion */
-    border-radius: 50%; /* Makes the image circular */
+  @media (max-width: 768px) {
+    display: none; /* Hides the header title on large mobile devices or small tablets */
   }
-  .header-title {
-    font-family: var(--appHeading);
-    font-size: 48px;
-    color: var(--text);
-    margin: 0;
-    @media (max-width: 1024px) {
-      font-size: 36px; /* Adjusts the header title font size on tablets and smaller desktops */
-    }
-    @media (max-width: 768px) {
-      display: none; /* Hides the header title on large mobile devices or small tablets */
-    }
-    @media (max-width: 480px) {
-      display: none; /* Hides the header title on smaller mobile devices */
-    }
+  @media (max-width: 480px) {
+    display: none; /* Hides the header title on smaller mobile devices */
   }
-  /* CONTAINER FOR NAVIGATION LINKS */
-  .header-link-icons-container {
-    display: flex;
-    flex-direction: row;
-    flex: 1 1 0;
-    align-items: center;
-    justify-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    width: 380px;
-    flex: 0 0 auto;
-    @media (max-width: 1024px) {
-      width: 300px; /* Adjusts the width of the header link icons container on tablets and smaller desktops */
-    }
-    @media (max-width: 768px) {
-      width: 240px; /* Adjusts the width of the header link icons container on large mobile devices and small tablets */
-    }
+}
+/* CONTAINER FOR NAVIGATION LINKS */
+.header-icons-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-between;
+  /* check this one */
+  /* width: 380px; */
+  flex: 0 0 auto;
+  @media (max-width: 1024px) {
+    width: 300px; /* Adjusts the width of the header link icons container on tablets and smaller desktops */
   }
-  .header-link-icons-subcontainer {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 0;
-    align-items: center;
-    justify-content: center;
-    min-width: 80px;
+  @media (max-width: 768px) {
+    width: auto; /* Avoids overflow when icon labels are hidden on mobile */
+    gap: 2px;
   }
-  .header-link-icons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    text-decoration: none;
-    outline: none;
-    min-width: 72px;
-    height: 46px;
-    box-sizing: border-box;
+}
+.header-icons-subcontainer {
+  display: flex;
+  flex-direction: column; /* Text under icons */
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  @media (max-width: 768px) {
+    min-width: 44px;
   }
-  .header-link-icons-button {
-    border: none;
-    background: transparent;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    line-height: 1;
+}
+.header-icon-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  text-decoration: none;
+  padding: 3px;
+  gap: 4px;
+  outline: none;
+  min-width: 80px;
+  height: 46px;
+  box-sizing: border-box;
+  @media (max-width: 768px) {
+    min-width: 44px;
+    height: 40px;
+    padding: 2px;
   }
-  .header-link-icons:hover .header-link-icons,
-  .header-link-icons:focus-visible .header-link-icons {
-    filter: brightness(0) saturate(100%) invert(57%) sepia(39%) saturate(932%)
-      hue-rotate(327deg) brightness(96%) contrast(92%);
-    transform: scale(1.3);
+}
+.header-icon-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  transition:
+    filter 0.3s,
+    transform 0.2s;
+  filter: brightness(0) saturate(100%) invert(72%) sepia(70%) saturate(2310%)
+    hue-rotate(344deg) brightness(102%) contrast(102%);
+}
+.header-icon-button {
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  gap: 4px;
+  font: inherit;
+  cursor: pointer;
+  line-height: 1;
+  @media (max-width: 768px) {
+    min-width: 44px;
+    height: 40px;
+    padding: 2px;
   }
-  .header-link-icons-button:hover .header-link-icons,
-  .header-link-icons-button:focus-visible .header-link-icons {
-    filter: brightness(0) saturate(100%) invert(57%) sepia(39%) saturate(932%)
-      hue-rotate(327deg) brightness(96%) contrast(92%);
-    transform: scale(1.3);
+}
+.header-icon-button:hover,
+.header-icon-button:focus-visible {
+  filter: brightness(0) saturate(100%) invert(57%) sepia(39%) saturate(932%)
+    hue-rotate(327deg) brightness(96%) contrast(92%);
+  transform: scale(1.3);
+}
+.header-icon-link:hover .header-icon-icon,
+.header-icon-link:focus-visible .header-icon-icon {
+  filter: brightness(0) saturate(100%) invert(57%) sepia(39%) saturate(932%)
+    hue-rotate(327deg) brightness(96%) contrast(92%);
+  transform: scale(1.3);
+}
+/* .header-icon-button:hover .header-icon-button,
+.header-icon-button:focus-visible .header-icon-button {
+  filter: brightness(0) saturate(100%) invert(57%) sepia(39%) saturate(932%)
+    hue-rotate(327deg) brightness(96%) contrast(92%);
+  transform: scale(1.3);
+} */
+.header-icon-text {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  @media (max-width: 1024px) {
+    display: none; /* Hides the header link icons text on tablets and smaller desktops */
   }
-  .header-link-icons {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    transition:
-      filter 0.3s,
-      transform 0.2s;
-    filter: brightness(0) saturate(100%) invert(72%) sepia(70%) saturate(2310%)
-      hue-rotate(344deg) brightness(102%) contrast(102%);
+  @media (max-width: 768px) {
+    display: none; /* Hides the header link icons text on large mobile devices and small tablets */
   }
-  .header-link-icons-text {
-    margin: 0;
-    padding: 0;
-    color: var(--text);
-    font-size: 12px;
-    line-height: 1;
-    text-align: center;
-    @media (max-width: 1024px) {
-      display: none; /* Hides the header link icons text on tablets and smaller desktops */
-    }
-    @media (max-width: 768px) {
-      display: none; /* Hides the header link icons text on large mobile devices and small tablets */
-    }
-    @media (max-width: 480px) {
-      display: none; /* Hides the header link icons text on smaller mobile devices */
-    }
+  @media (max-width: 480px) {
+    display: none; /* Hides the header link icons text on smaller mobile devices */
   }
-  .header-link-icons-placeholder {
-    width: 0;
-    height: 46px;
-    visibility: hidden;
-    display: inline-block;
+}
+.header-icon-placeholder {
+  width: 0;
+  height: 46px;
+  visibility: hidden;
+  display: inline-block;
+}
+.mobile-nav-menu-button {
+  display: none;
+  @media (max-width: 1024px) {
+    display: none; /* Hides the mobile navigation menu on tablets and larger desktops */
   }
-  .mobile-nav-menu-button {
-    display: none;
-    @media (max-width: 1024px) {
-      display: none; /* Hides the mobile navigation menu on tablets and larger desktops */
-    }
-    @media (max-width: 768px) {
-      display: inline-flex; /* Shows the mobile navigation menu on large mobile devices and small tablets */
-    }
-    @media (max-width: 480px) {
-      display: inline-flex; /* Shows the mobile navigation menu on smaller mobile devices */
-    }
+  @media (max-width: 768px) {
+    display: inline-flex; /* Shows the mobile navigation menu on large mobile devices and small tablets */
+  }
+  @media (max-width: 480px) {
+    display: inline-flex; /* Shows the mobile navigation menu on smaller mobile devices */
   }
 }

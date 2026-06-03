@@ -1,5 +1,5 @@
 // CART PAGE
-// IMPORTS
+// IMPORT DEPENDENCIES
 import CartList from "../../components/purchaseflow/CartList";
 import CartSummary from "../../components/purchaseflow/CartSummary";
 import CartConfirmation from "../../components/purchaseflow/CartContinjue";

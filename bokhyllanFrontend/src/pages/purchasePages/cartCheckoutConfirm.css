@@ -207,6 +207,7 @@
 .info-message {
   justify-self: center;
   align-self: center;
+  text-align: center;
   color: var(--text-dark);
   padding: 12px;
   border-radius: 4px;

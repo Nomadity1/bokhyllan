@@ -1,30 +1,26 @@
-/* STOP PAGE CONTENT FROM SCROLLING */
-html,
-body,
-#root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  & body {
-    overflow: hidden; /* Prohibits the whole page content from scrolling */
-  }
-}
+/* GLOBAL STYLES PRIMARILY FOR APP.JS COMPONENT 
+BUT IS ALSO IMPORTED TO ALSO OTHER COMPONENTS */
+/* STOP PAGE BODY CONTENT (BETWEEN HEADER, NAVBAR & FOOTER) FROM SCROLLING */
+body {
+  overflow: hidden; /* Prohibits the content from scrolling */
+} /* NOTE: body in index.html = body in main.jsx = main in App.js */
 /* APP CONTAINER */
 .app-container {
   flex: 1 1 auto; /* Main content will grow and shrink as needed, taking up the remaining space between header and footer */
   min-height: 0; /* Allows the main content to shrink properly when the viewport height is reduced */
+  min-width: 0; /* Allows the main content to shrink properly when the viewport width is reduced */
   display: flex;
   flex-direction: column;
 }
-/* MAIN ELEMENT CONTAINER */
+/* MAIN ELEMENT CONTAINER CHILD OF APP.CONTAINER */
 .main-container {
   flex: 1 1 auto;
   min-height: 0;
+  min-width: 0;
   overflow-y: auto; /* Allows only main content to scroll */
 }
-
-/* FONTS */
+/* GLOBAL SETTINGS FOR FONTS */
+/* H1 IS USED ONLY FOR WEBSITE MAIN TITLE IN HEADER */
 h1 {
   font-family: var(--appHeading);
   font-size: 56px;
@@ -36,6 +32,7 @@ h1 {
     font-size: 36px;
     margin: 20px 0;
   }
+  /* Not shown on smaller devices, see header.css */
 }
 h2 {
   font-family: var(--appTexts);
@@ -52,59 +49,4 @@ p {
   margin-block-end: 0;
   margin: 0;
   padding: 0;
-}
-
-/* FOOTER */
-.footer-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 24px;
-  padding: 32px;
-  border-top: 1px solid var(--header-bg);
-  background: var(--header-bg);
-  color: var(--text-highlight);
-  & .footer-copyright {
-    flex: 2 1 0;
-    text-align: left;
-    color: var(--text);
-  }
-  & .footer-navbar {
-    flex: 1 1 0;
-    justify-content: flex-end;
-  }
-  @media (max-width: 768px) {
-    justify-content: center;
-  }
-}
-@media (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
-    padding: 24px 20px;
-    text-align: center;
-  }
-  & .footer-copyright,
-  & .footer-navbar {
-    flex: 1 1 auto;
-    width: 100%;
-    text-align: center;
-  }
-}
-/* HERO SECTION */
-.hero-container {
-  position: relative;
-  width: 100%;
-  & .hero-image {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-  & .hero-slogan {
-    position: absolute;
-    top: 75%;
-    left: 58%;
-    margin: 0;
-    color: var(--text);
-    font-size: 1.6rem;
-  }
 }

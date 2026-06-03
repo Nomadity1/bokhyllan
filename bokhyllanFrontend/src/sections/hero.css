@@ -1,3 +1,18 @@
+/* HERO SECTION */
 .hero-container {
+  position: relative;
   width: 100%;
+  & .hero-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  & .hero-slogan {
+    position: absolute;
+    top: 75%;
+    left: 58%;
+    margin: 0;
+    color: var(--text);
+    font-size: 1.6rem;
+  }
 }

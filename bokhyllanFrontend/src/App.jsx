@@ -1,17 +1,21 @@
 // IMPORT PACKAGES & DEPENDENCIES
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-// IMPORT PAGES
+// IMPORT PUBLIC PAGES
 import Home from "./pages/Home";
 import BookTip from "./pages/publicPages/BookTip";
 import Contact from "./pages/publicPages/Contact";
 import About from "./pages/publicPages/About";
 import Register from "./pages/publicPages/Registration";
 import Login from "./pages/publicPages/Login";
+import NotFound from "./pages/publicPages/NotFound";
+import Conditions from "./pages/publicPages/Conditions";
+import Integrity from "./pages/publicPages/Integrity";
+// IMPORT PURCHASE PAGES
 import Cart from "./pages/purchasePages/Cart";
 import Checkout from "./pages/purchasePages/Checkout";
 import Confirmation from "./pages/purchasePages/Confirmation";
-import NotFound from "./pages/publicPages/NotFound";
+// IMPORT PROTECTED PAGES
 import Profile from "./pages/protectedPages/Profile";
 // IMPORT COMPONENTS
 import Header from "./components/home/Header";
@@ -49,7 +53,10 @@ function App() {
           isMobileMenuOpen={mobileMenuOpen}
         />
         {/* NAVIGATION */}
-        <Navbar isMobileMenuOpen={mobileMenuOpen} onNavigate={closeMobileMenu} />
+        <Navbar
+          isMobileMenuOpen={mobileMenuOpen}
+          onNavigate={closeMobileMenu}
+        />
         {/* MAIN */}
         <main className="main-container">
           {/* ROUTES  */}
@@ -59,6 +66,8 @@ function App() {
             <Route path="/tips" element={<BookTip />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
+            <Route path="/conditions" element={<Conditions />} />
+            <Route path="/integrity" element={<Integrity />} />
             {/* Purchase flow routes */}
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />

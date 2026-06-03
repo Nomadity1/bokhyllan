@@ -1,4 +1,4 @@
-.book-tip-container {
+.publics-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +6,7 @@
   @media (max-width: 768px) {
     /* TO BE DEVELOPED */
   }
-  & .booktip-navbar {
+  & .publics-navbar {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,7 +19,7 @@
       align-items: center;
     }
   }
-  & .booktip-navbar p {
+  & .publics-navbar p {
     white-space: nowrap;
     padding: 0;
     margin: 8px 0 4px;
@@ -45,4 +45,12 @@
     color: var(--text-highlight);
     font-weight: bold;
   }
+}
+.publics-info-message {
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  color: var(--text-dark);
+  padding: 12px;
+  border-radius: 4px;
 }
