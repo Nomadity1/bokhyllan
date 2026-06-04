@@ -1,5 +1,6 @@
+// MODEL FOR ORDERS - DEFINES THE SCHEMA FOR ORDER DOCUMENTS IN MONGODB
+// IMPORT OF PACKAGES & DEPENDENCIES
 const mongoose = require("mongoose");
-
 const orderItemSchema = new mongoose.Schema(
   {
     isbn: {
@@ -29,15 +30,15 @@ const orderItemSchema = new mongoose.Schema(
   },
   { _id: false },
 );
-
+// Instantiate main order schema
 const orderSchema = new mongoose.Schema(
   {
-    // Optional reference to a User, can be null for guest checkouts
+    // Optional reference to a User (foreign key), can be null for guest checkouts
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       default: null,
-    },
+    }, 
     items: {
       type: [orderItemSchema],
       required: true,

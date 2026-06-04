@@ -1,11 +1,13 @@
+// SERVER.JS - ENTRY POINT FOR THE BACKEND APPLICATION
 // IMPORT OF PACKAGES & DEPENDENCIES
 const express = require("express"); // Webb framework for Node.js
 const dotenv = require("dotenv").config(); // Enable reading the dotenv-file
 const cors = require("cors"); // Middleware for handling Cross-Origin Resource Sharing (CORS)
 const { connect } = require("mongoose"); // ODM for MongoDB
 const connectDB = require("./config/dbConnections"); // Import the function to connect to the database
-const userRoutes = require("./routes/userRoutes"); // Import user routes
+const userRoutes = require("./routes/userRoutes"); 
 const orderRoutes = require("./routes/orderRoutes");
+const bookRoutes = require("./routes/bookRoutes");
 
 // CONNECT TO DATABASE
 connectDB();
@@ -27,8 +29,8 @@ app.use(
         /^https?:\/\/172\.(1[6-9]|2\d|3[0-1])\.\d{1,3}\.\d{1,3}:\d+$/.test(
           origin,
         );
-      // Godkänner lokala LAN-origins (192.168.x.x, 10.x.x.x, 172.16-31.x.x) och localhost
-      // => appen fungerar oavsett om den öppnas via localhost-länk eller nätverkslänk
+      // Approves local LAN origins (192.168.x.x, 10.x.x.x, 172.16-31.x.x) and localhost
+      // => the app works regardless of whether it is opened via localhost link or network link
       if (isLocalDevOrigin) return callback(null, true);
 
       return callback(new Error("Not allowed by CORS"));
@@ -37,11 +39,12 @@ app.use(
 );
 
 // USE MIDDLEWARE
-app.use(express.json()); // Parse JSON från requests
+app.use(express.json()); // Parse JSON from requests
 
-// USE ROUTES
+// "MOUNT" ROUTES TO CONNECT FRONTEND & BACKEND THROUGH API ENDPOINTS
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/books", bookRoutes);
 
 // ADD CENTRAL ERROR HANDLING MIDDLEWARE?
 

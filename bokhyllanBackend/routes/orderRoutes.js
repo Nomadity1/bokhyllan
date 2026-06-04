@@ -1,4 +1,4 @@
-// ROUTES FOR ORDERS
+// ROUTES FOR ORDER ENDPOINTS  
 // IMPORTS OF PACKAGES & DEPENDENCIES
 const express = require("express");
 const { createOrder, getUserOrders } = require("../controllers/orderController");

@@ -23,6 +23,10 @@ const bookSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please add a main category"], // Anpassat felmeddelande
     },
+    targetAudience: {
+      type: [String],
+      default: [],
+    },
     subCategories: {
       type: [String], // Array av strängar för subkategorier
       required: [true, "Please add at least one subcategory"], // Anpassat felmeddelande

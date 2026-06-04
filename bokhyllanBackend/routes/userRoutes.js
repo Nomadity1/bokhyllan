@@ -1,4 +1,4 @@
-// ROUTES FOR USER-RELATED ENDPOINTS
+// ROUTES FOR USER ENDPOINTS
 // IMPORTS OF PACKAGES & DEPENDENCIES
 const express = require("express");
 const validateToken = require("../middleware/validateTokenHandler");
@@ -13,7 +13,6 @@ const {
   getFavourites,
   addFavourite,
   removeFavourite,
-  getUserOrders,
 } = require("../controllers/userController");
 
 // BUILD EXPRESS ROUTER
@@ -26,12 +25,12 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 // GET for current user (/api/users/current)
 router.get("/current", validateToken, currentUser);
-// JAG HAR LAGT TILL CURRENT I PATH:s MEN VET INTE OM DET ÄR RÄTT
 // FAVOURITES for current user (/api/users/current/favourites)
 router.get("/current/favourites", validateToken, getFavourites);
 router.post("/current/favourites", validateToken, addFavourite);
 router.delete("/current/favourites/:isbn", validateToken, removeFavourite);
 // PUT/DELETE for a specific user (/api/users/:id) - not implemented yet, but could be useful for future features like updating user info or deleting an account
 // router.route("/:id").put(updateUser).delete(deleteUser);
+
 // EXPORT ROUTER
 module.exports = router;
