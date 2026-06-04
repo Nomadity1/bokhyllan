@@ -27,6 +27,10 @@
   --text-dark: #264653ff;
   --appTexts: "Love Ya Like A Sister", system-ui, sans-serif;
   --appHeading: "Luckiest Guy", system-ui, sans-serif;
+  --button-width-desktop: 260px;
+  --button-width-mobile: 220px;
+  --button-height-desktop: 48px;
+  --button-height-mobile: 44px;
 }
 
 /* APPLY GLOBAL COLORS AND FONT STYLES */

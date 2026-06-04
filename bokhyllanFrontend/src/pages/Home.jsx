@@ -1,28 +1,64 @@
 // IMPORT OF PACKAGES & DEPENDENCIES
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import api from "../api";
 
 // IMPORT SECTIONS
 import Hero from "../sections/Hero";
 import Showcase from "../sections/Showcase";
 import Carousel from "../sections/Carousel";
-import books from "../dbBooks/dbBooks.json";
 // IMPORT STYLE
 import "../App.css";
 
 // FUNCTION
 function Home() {
+  const [books, setBooks] = useState([]);
+  const [isLoadingBooks, setIsLoadingBooks] = useState(true);
+  const [booksError, setBooksError] = useState("");
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadBooks() {
+      try {
+        setIsLoadingBooks(true);
+        const data = await api.getBooks();
+        if (!isMounted) return;
+        setBooks(Array.isArray(data) ? data : []);
+        setBooksError("");
+      } catch (error) {
+        if (!isMounted) return;
+        setBooks([]);
+        setBooksError(error.message || "Kunde inte hämta böcker just nu.");
+      } finally {
+        if (isMounted) {
+          setIsLoadingBooks(false);
+        }
+      }
+    }
+
+    loadBooks();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   // Variable for showcase selection category
   const showcaseCategory = "Nyutkommet";
   // Filtration function to group books by category
-  const booksByCategory = books.reduce((groups, book) => {
-    // Fallback to "Övrigt" if mainCategory is missing or empty
-    const category = book.mainCategory || "Övrigt";
-    if (!groups[category]) {
-      groups[category] = [];
-    }
-    groups[category].push(book);
-    return groups;
-  }, {});
+  const booksByCategory = useMemo(
+    () =>
+      books.reduce((groups, book) => {
+        // Fallback to "Övrigt" if mainCategory is missing or empty
+        const category = book.mainCategory || "Övrigt";
+        if (!groups[category]) {
+          groups[category] = [];
+        }
+        groups[category].push(book);
+        return groups;
+      }, {}),
+    [books],
+  );
 
   const categories = useMemo(
     () => Object.keys(booksByCategory),
@@ -31,7 +67,7 @@ function Home() {
 
   const audiences = useMemo(
     () => [...new Set(books.flatMap((b) => b.targetAudience || []))].sort(),
-    [],
+    [books],
   );
 
   const subCategories = useMemo(
@@ -41,7 +77,7 @@ function Home() {
           books.flatMap((b) => b.subCategories || []).filter((s) => s !== ""),
         ),
       ].sort(),
-    [],
+    [books],
   );
 
   const [selectedCategory, setSelectedCategory] = useState("Alla");
@@ -86,11 +122,19 @@ function Home() {
   // CONTENT TO BE RENDERED
   return (
     <div className="home-container">
+      {/* Display hero section */}
       <Hero />
+      {isLoadingBooks ? (
+        <p>Laddar böcker...</p>
+      ) : booksError ? (
+        <p>{booksError}</p>
+      ) : null}
+      {/* Display showcase section */}
       <Showcase books={books} category={showcaseCategory} />
-
+      {/* Buttons to filter display of books */}
       <div className="home-filter-menu" aria-label="Filtrera böcker">
         <h3 className="home-filter-heading">Filtrera här</h3>
+        {/* Filter based on main categories */}
         <div className="home-filter-group">
           <span className="home-filter-label">Kategori</span>
           <button
@@ -111,7 +155,7 @@ function Home() {
             </button>
           ))}
         </div>
-
+        {/* Filter based on target audience */}
         <div className="home-filter-group">
           <span className="home-filter-label">Målgrupp</span>
           <button
@@ -132,7 +176,7 @@ function Home() {
             </button>
           ))}
         </div>
-
+        {/* Filter based on subcategories */}
         <div className="home-filter-group">
           <span className="home-filter-label">Underkategori</span>
           <button
@@ -154,7 +198,7 @@ function Home() {
           ))}
         </div>
       </div>
-
+      {/* Display filter result in carousels */}
       {categoryEntries.map(([categoryName, categoryBooks]) => (
         <Carousel
           key={categoryName}

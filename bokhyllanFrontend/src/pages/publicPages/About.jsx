@@ -9,14 +9,12 @@ function About() {
     <div className="publics-container">
       <h2 className="publics-title">Om oss</h2>
       <p className="publics-info-message">
-        Här kan du läsa mer om oss och vårt arbete. Vi strävar efter att erbjuda
-        bästa möjliga service och upplevelse för våra användare.
+        Här kommer du att kunna läsa mer om oss och vårt arbete så småningom.
       </p>
       <div className="publics-navbar">
-        <p>Tillbaka till start</p>
         <p>
           <Link to="/" className="home-link">
-            Start
+            Tillbaka till start
           </Link>
         </p>
       </div>

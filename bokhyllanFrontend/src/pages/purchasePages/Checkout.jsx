@@ -1,12 +1,14 @@
 // CHECKOUT PAGE
-// IMPORTS
+// IMPORT OF PACKAGES & DEPENDENCIES
 import { useNavigate } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import api from "../../api";
 import useCart from "../../hooks/useCart";
-import CartSummary from "../../components/purchaseflow/CartSummary";
+// import CheckoutList from "../../components/purchaseflow/CheckoutList";
+// import CheckoutSummary from "../../components/purchaseflow/CheckoutSummary";
+// import CheckoutConfirmation from "../../components/purchaseflow/CheckoutConfirmation";
 import "./cartCheckoutConfirm.css";
 
 // FUNCTION
@@ -15,14 +17,17 @@ function Checkout() {
   const { cartItems, cartTotal, clearCart } = useCart();
   // Variable to check if the user is authenticated
   const { authed } = useAuth();
-  // State to manage checkout form and error messages
+  // State variables to manage checkout form and error messages
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [postaladdress, setPostaladdress] = useState("");
   const [postalcode, setPostalcode] = useState("");
   const [city, setCity] = useState("");
   const [error, setError] = useState("");
-  // Activate navigate to redirect the user after confirmation
+  // State variables to manage payment and delivery options
+  const [deliveryOption, setDeliveryOption] = useState("");
+  const [paymentOption, setPaymentOption] = useState("");
+  // Put navigate to work to redirect the user after confirmation
   const navigate = useNavigate();
 
   // Variable to transform cart items into the API format
@@ -37,11 +42,26 @@ function Checkout() {
       })),
     [cartItems],
   );
+  // Functions to handle changes in delivery and payment options (not implemented in the form yet)
+  function handleDeliveryChange(e) {
+    setDeliveryOption(e.target.value);
+  }
+  function handlePaymentChange(e) {
+    setPaymentOption(e.target.value);
+  }
 
-  // FUNCTION FOR SENDING ORDER TO API
+  // Function to send order to API
   async function handleSubmit(e) {
     // Prevent the page from reloading when the form is submitted
     e.preventDefault();
+    if (!deliveryOption) {
+      alert("Vänligen välj leveranssätt.");
+      return;
+    }
+    if (!paymentOption) {
+      alert("Vänligen välj betalningsmetod.");
+      return;
+    }
     setError("");
     // Checking if the cart is empty
     if (cartRows.length === 0) {
@@ -70,19 +90,27 @@ function Checkout() {
   // RENDER CONTENT
   return (
     <div className="checkout-container">
-      <div className="checkout-column-right">
-        <h3>Välj leveranssätt</h3>
-        <h3>Välj betalningsmetod</h3>
-      </div>
-      <div className="checkout-column-left">
-        <h2>Sammanställning över din beställning</h2>
+      <h2>Sammanställning över din beställning</h2>
+      {/* <CheckoutList/> */}
+      {/* <CheckoutSummary/> */}
+      {/* <CheckoutConfirmation/> */}
+
+      <div className="checkout-content">
         {cartRows.length === 0 ? (
           <p>Din varukorg är tom.</p>
         ) : (
-          <table className="checkout-overview-table">
+          <table className="checkout-list-table">
+            <colgroup>
+              <col className="cart-col-1" />
+              <col className="cart-col-2" />
+              <col className="cart-col-3" />
+              <col className="cart-col-4" />
+              <col className="cart-col-5" />
+              <col className="cart-col-6" />
+            </colgroup>
             <thead>
               <tr>
-                <th scope="col" className="th-1">
+                <th scope="col" className="th-1" colSpan={2}>
                   Titel
                 </th>
                 <th scope="col" className="th-2">
@@ -91,24 +119,27 @@ function Checkout() {
                 <th scope="col" className="th-3">
                   Pris/st
                 </th>
-                <th scope="col" className="th-4">
-                  Delsumma
+                <th scope="col" className="th-4" colSpan={2}>
+                  Summa
                 </th>
               </tr>
             </thead>
             <tbody>
               {cartRows.map((item) => (
                 <tr key={item.isbn}>
-                  <td>{item.title}</td>
-                  <td>{item.quantity}</td>
-                  <td>{item.price} kr</td>
-                  <td>{(item.price * item.quantity).toFixed(0)} kr</td>
+                  <td colSpan={2}>{item.title}</td>
+                  <td className="checkout-col-qty">{item.quantity}</td>
+                  <td className="checkout-col-price">{item.price} kr</td>
+                  <td className="checkout-col-subtotal" colSpan={2}>
+                    {(item.price * item.quantity).toFixed(0)} kr
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         )}
-        <CartSummary />
+        {/* Display CartSummary component */}
+        {/* <CartSummary /> */}
         {/* Conditional error message  */}
         {error && <p className="error-message">{error}</p>}
         {!authed && (
@@ -136,6 +167,15 @@ function Checkout() {
               <div>
                 <input
                   type="text"
+                  value={postaladdress}
+                  placeholder="Postadress"
+                  onChange={(e) => setPostaladdress(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
                   value={postalcode}
                   placeholder="Postnummer"
                   onChange={(e) => setPostalcode(e.target.value)}
@@ -151,22 +191,90 @@ function Checkout() {
                   required
                 />
               </div>
+              <h3>Välj leveranssätt</h3>
               <div>
-                <input
-                  type="text"
-                  value={postaladdress}
-                  placeholder="Postadress"
-                  onChange={(e) => setPostaladdress(e.target.value)}
-                  required
-                />
+                <label>
+                  <input
+                    type="radio"
+                    name="delivery"
+                    value="homeDelivery"
+                    aria-label="Hemleverans"
+                    label="Hemleverans"
+                    checked={deliveryOption === "homeDelivery"}
+                    onChange={handleDeliveryChange}
+                    required
+                  />
+                  Hemleverans
+                </label>
               </div>
-              <button
-                type="submit"
-                className="place-order-button"
-                disabled={cartRows.length === 0}
-              >
-                Bekräfta beställning
-              </button>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="delivery"
+                    value="storePickup"
+                    checked={deliveryOption === "storePickup"}
+                    onChange={handleDeliveryChange}
+                    aria-label="Butikupphämtning"
+                    label="Butikupphämtning"
+                    required
+                  />
+                  Butikupphämtning
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="delivery"
+                    value="postBoxPickup"
+                    checked={deliveryOption === "postBoxPickup"}
+                    onChange={handleDeliveryChange}
+                    aria-label="Postboxupphämtning"
+                    label="Postboxupphämtning"
+                    required
+                  />
+                  Postboxupphämtning
+                </label>
+              </div>
+              <h3>Välj betalningsmetod</h3>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="card"
+                    onChange={handlePaymentChange}
+                    aria-label="Kortbetalning"
+                    label="Kortbetalning"
+                    required
+                  />
+                  Kortbetalning
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="swish"
+                    onChange={handlePaymentChange}
+                    aria-label="Swish"
+                    label="Swish"
+                    required
+                  />
+                  Swish
+                </label>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  className="place-order-button"
+                  disabled={cartRows.length === 0}
+                >
+                  Bekräfta beställning
+                </button>
+              </div>
             </form>
           </>
         )}
@@ -176,6 +284,7 @@ function Checkout() {
               Eftersom du är inloggad kommer dina uppgifter att användas för att
               slutföra beställningen. Beställningen kommer också att sparas i
               din köphistorik.
+              {/* Detta kräver vidareutveckling för att hämta data från användarens profil och fylla i formuläret automatiskt. */}
             </p>
             <button
               type="submit"

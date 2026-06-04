@@ -96,6 +96,15 @@ function CheckoutForm() {
             <div>
               <input
                 type="text"
+                value={postaladdress}
+                placeholder="Postadress"
+                onChange={(e) => setPostaladdress(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
                 value={postalcode}
                 placeholder="Postnummer"
                 onChange={(e) => setPostalcode(e.target.value)}
@@ -108,15 +117,6 @@ function CheckoutForm() {
                 value={city}
                 placeholder="Ort"
                 onChange={(e) => setCity(e.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                value={postaladdress}
-                placeholder="Postadress"
-                onChange={(e) => setPostaladdress(e.target.value)}
                 required
               />
             </div>

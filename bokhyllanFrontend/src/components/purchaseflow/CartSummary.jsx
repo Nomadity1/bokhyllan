@@ -20,45 +20,45 @@ function CartSummary() {
     <div className="cart-summary-and-payment-container">
       <div className="cart-summary-sub-container">
         <table className="cart-summary-table">
+          <colgroup>
+            <col className="cart-col-1" />
+            <col className="cart-col-2" />
+            <col className="cart-col-3" />
+            <col className="cart-col-4" />
+            <col className="cart-col-5" />
+            <col className="cart-col-6" />
+          </colgroup>
           <thead>
             <tr>
-              <th scope="row" className="cart-total-header th-2">
-                <h3>
-                  <strong>Deltotal </strong>
-                </h3>
+              <th scope="row" className="cart-summary-header th-2" colSpan={4}>
+                <strong>Deltotal </strong>
               </th>
-              <td>
-                <h3>{cartTotal} kr</h3>
+              <td colSpan={2}>
+                <strong>{cartTotal} kr</strong>
               </td>
             </tr>
             <tr>
-              <th scope="row" className="cart-total-header th-3">
-                <h3>
-                  <strong>Moms </strong>
-                </h3>
+              <th scope="row" className="cart-summary-header th-3" colSpan={4}>
+                <strong>Moms </strong>
               </th>
-              <td>
-                <h3>{taxAmount} kr</h3>
+              <td colSpan={2}>
+                <strong>{taxAmount} kr</strong>
               </td>
             </tr>
             <tr>
-              <th scope="row" className="cart-total-header th-4">
-                <h3>
-                  <strong>Frakt </strong>
-                </h3>
+              <th scope="row" className="cart-summary-header th-4" colSpan={4}>
+                <strong>Frakt </strong>
               </th>
-              <td>
-                <h3>{shippingCost} kr</h3>
+              <td colSpan={2}>
+                <strong>{shippingCost} kr</strong>
               </td>
             </tr>
             <tr>
-              <th scope="row" className="cart-total-header th-5">
-                <h3>
-                  <strong>Total </strong>
-                </h3>
+              <th scope="row" className="cart-summary-header th-5" colSpan={4}>
+                <strong>Total </strong>
               </th>
-              <td>
-                <h3>{totalAmount} kr</h3>
+              <td colSpan={2}>
+                <strong>{totalAmount} kr</strong>
               </td>
             </tr>
           </thead>

@@ -6,7 +6,7 @@ import "./cartCheckoutConfirm.css";
 // FUNCTION
 function Confirmation() {
   return (
-    <div>
+    <div className="confirmation-container">
       <h2>Tack för ditt köp!</h2>
       <p className="info-message">Funktionalitet inte implementerad än</p>
       <div className="navbar">

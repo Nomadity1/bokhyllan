@@ -8,6 +8,11 @@ const API_BASE = `${window.location.protocol}//${window.location.hostname}:3000/
 const CART_STORAGE_KEY = "bokhyllan_cart";
 
 // FUNCTIONS
+// BOOKS (PUBLIC)
+export function getBooks() {
+  return request("/books", { method: "GET" });
+}
+
 // USER MANAGEMENT & AUTHENTICATION FUNCTIONS
 // localStorage-keys to get and set token
 export function getToken() {
@@ -204,11 +209,12 @@ export function placeOrder(orderPayload) {
 }
 // GETTING USER'S PAST ORDERS
 export function getUserOrders() {
-  return request("/users/orders", { method: "GET" });
+  return request("/orders/current/orders", { method: "GET" });
 }
 
 // EXPORTS
 export default {
+  getBooks,
   login,
   register,
   getFavourites,

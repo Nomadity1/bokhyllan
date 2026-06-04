@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import BookTip from "./pages/publicPages/BookTip";
 import Contact from "./pages/publicPages/Contact";
 import About from "./pages/publicPages/About";
+import BookDetails from "./pages/publicPages/BookDetails";
 import Register from "./pages/publicPages/Registration";
 import Login from "./pages/publicPages/Login";
 import NotFound from "./pages/publicPages/NotFound";
@@ -14,7 +15,7 @@ import Integrity from "./pages/publicPages/Integrity";
 // IMPORT PURCHASE PAGES
 import Cart from "./pages/purchasePages/Cart";
 import Checkout from "./pages/purchasePages/Checkout";
-import Confirmation from "./pages/purchasePages/Confirmation";
+import Confirmation from "./pages/purchasePages/CheckoutConfirmation";
 // IMPORT PROTECTED PAGES
 import Profile from "./pages/protectedPages/Profile";
 // IMPORT COMPONENTS
@@ -66,6 +67,7 @@ function App() {
             <Route path="/tips" element={<BookTip />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
+            <Route path="/books/:isbn" element={<BookDetails />} />
             <Route path="/conditions" element={<Conditions />} />
             <Route path="/integrity" element={<Integrity />} />
             {/* Purchase flow routes */}

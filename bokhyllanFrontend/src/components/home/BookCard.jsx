@@ -1,6 +1,7 @@
 // COMPONENT FOR DISPLAYING A BOOK IN A CARD FORMAT
 // Takes the book object as a prop
 // IMPORT DEPENDENCIES
+import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 // IMPORT FROM PUBLIC FOLDER
 const favouriteIconRegular = "/icons/heart-regular-full.svg";
@@ -12,19 +13,22 @@ import "./bookCard.css";
 function BookCard({ book, authed, isFavourite, onToggleFavourite }) {
   const { addCartItem } = useCart();
   const coverSrc = `/bookCovers/${book.imgId}`;
+  const detailsPath = `/books/${book.isbn}`;
 
   return (
     <div className="book-card">
       <div className="book-card-upper">
-        <img
-          src={coverSrc}
-          alt={`${book.title} cover`}
-          className="book-cover"
-          loading="lazy"
-          onError={(event) => {
-            event.currentTarget.style.visibility = "hidden";
-          }}
-        />
+        <Link to={detailsPath} aria-label={`Visa detaljer för ${book.title}`}>
+          <img
+            src={coverSrc}
+            alt={`${book.title} cover`}
+            className="book-cover"
+            loading="lazy"
+            onError={(event) => {
+              event.currentTarget.style.visibility = "hidden";
+            }}
+          />
+        </Link>
         {/* FAVOURITE TOGGLE BUTTON is visible for all users but only available to use for logged-in users */}
         <button
           type="button"
@@ -65,7 +69,9 @@ function BookCard({ book, authed, isFavourite, onToggleFavourite }) {
       </div>
       <div className="book-card-lower">
         <div className="book-card-lower-title">
-          <h3>{book.title}</h3>
+          <h3>
+            <Link to={detailsPath}>{book.title}</Link>
+          </h3>
         </div>
         <div className="book-card-lower-author">
           <p>{book.author}</p>
