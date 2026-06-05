@@ -1,0 +1,13 @@
+[
+  {
+    "username": "user",
+    "firstname": "Test",
+    "lastname": "User",
+    "email": "user@mail.nu",
+    "postaladdress": "Testgatan 1",
+    "postalcode": "21010",
+    "city": "Malmö",
+    "phone": "0701234567",
+    "password": "password"
+  }
+]
