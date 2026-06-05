@@ -28,8 +28,10 @@
   --appTexts: "Love Ya Like A Sister", system-ui, sans-serif;
   --appHeading: "Luckiest Guy", system-ui, sans-serif;
   --button-width-desktop: 260px;
-  --button-width-mobile: 220px;
+  --button-width-tablet: 230px;
+  --button-width-mobile: 200px;
   --button-height-desktop: 48px;
+  --button-height-tablet: 46px;
   --button-height-mobile: 44px;
 }
 

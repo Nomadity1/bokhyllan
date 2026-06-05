@@ -15,7 +15,7 @@ import Integrity from "./pages/publicPages/Integrity";
 // IMPORT PURCHASE PAGES
 import Cart from "./pages/purchasePages/Cart";
 import Checkout from "./pages/purchasePages/Checkout";
-import Confirmation from "./pages/purchasePages/CheckoutConfirmation";
+import CheckoutResponse from "./pages/purchasePages/CheckoutResponse";
 // IMPORT PROTECTED PAGES
 import Profile from "./pages/protectedPages/Profile";
 // IMPORT COMPONENTS
@@ -25,25 +25,22 @@ import Footer from "./components/home/Footer";
 import Favourites from "./components/profile/Favourites";
 // IMPORT AUTH-COMPONENT (används här för att skydda routes)
 import { RequireAuth } from "./auth/RequireAuth";
-// // IMPORT AUTH-HOOK
-// import useAuth from "./hooks/useAuth";
 // IMPORT STYLE
 import "./App.css";
 
 // FUNCTION
 function App() {
+  // Check if mobile menu is open (for toggling the mobile navigation)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+// Function to toggle the mobile menu open/closed
   function toggleMobileMenu() {
     setMobileMenuOpen((previous) => !previous);
   }
-
+// Function to close the mobile menu (used when navigating to a new page)
   function closeMobileMenu() {
     setMobileMenuOpen(false);
   }
 
-  // // useAuth hook hämtar statusen på authed från AuthContext
-  // const { authed } = useAuth();
   // CONTENT TO BE RENDERED
   return (
     <Router>
@@ -73,7 +70,7 @@ function App() {
             {/* Purchase flow routes */}
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="/confirmation" element={<Confirmation />} />
+            <Route path="/checkout-response" element={<CheckoutResponse />} />
             {/* Registration & Authentication routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

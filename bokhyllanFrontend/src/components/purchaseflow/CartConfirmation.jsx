@@ -1,10 +1,10 @@
 // IMPORTS
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../../pages/purchasePages/cartCheckoutConfirm.css";
 
 // FUNCTION TO GO TO CHECKOUT PAGE
 function CartConfirmation() {
+  // Activate navigate to redirect the user after confirmation
   const navigate = useNavigate();
   // Function to handle order and navigation
   function handlePlaceOrder() {
@@ -12,7 +12,7 @@ function CartConfirmation() {
   }
 
   return (
-    <div className="cart-payment-button-container">
+    <div className="cart-confirmation-container">
       <p className="info-message">
         Du kommer att få välja leveranssätt och betalningsmetod i nästa steg.
       </p>
@@ -21,15 +21,13 @@ function CartConfirmation() {
         className="place-order-button"
         onClick={handlePlaceOrder}
       >
-        Fortsätt till kassan
+        Till kassan
       </button>
-      <div className="navbar">
-        <p>
-          <Link to="/" className="navbar-link">
-            Fortsätt handla
-          </Link>
-        </p>
-      </div>
+      <p>
+        <Link to="/" className="navbar-link">
+          Fortsätt handla
+        </Link>
+      </p>
     </div>
   );
 }

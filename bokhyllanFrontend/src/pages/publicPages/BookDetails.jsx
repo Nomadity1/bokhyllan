@@ -2,13 +2,21 @@
 // Takes the object book as a prop
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import useCart from "../../hooks/useCart";
 import api from "../../api";
+// IMPORT FROM PUBLIC FOLDER
+const favouriteIconRegular = "/icons/heart-regular-full.svg";
+const favouriteIconFull = "/icons/heart-solid-full.svg";
+const buyButtonIconFull = "/icons/plus-solid-full.svg";
 // IMPORT STYLE
-// import "../App.css";
 import "./publics.css";
 
-function BookDetails() {
+function BookDetails({ authed, isFavourite, onToggleFavourite }) {
+  // Variable to fetch book by isbn
   const { isbn } = useParams();
+  // Variable for add-to-cart function from cart context
+  const { addCartItem } = useCart();
+  // State variables to manage book data, loading state, and error messages
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -45,18 +53,14 @@ function BookDetails() {
         }
       }
     }
-
     loadBook();
-
     return () => {
       isMounted = false;
     };
-  }, [isbn]);
-
+  }, [isbn]); // Refetch book details if the isbn in the URL changes
   if (loading) {
     return <p>Laddar bokdetaljer...</p>;
   }
-
   if (error) {
     return (
       <div className="publics-container">
@@ -67,19 +71,60 @@ function BookDetails() {
       </div>
     );
   }
-
   const coverSrc = `/bookCovers/${book.imgId}`;
 
+  // CONTENT TO RENDER
   return (
     <div className="publics-container book-details">
-      <div className="book-details-media">
-        <img
-          src={coverSrc}
-          alt={`${book.title} cover`}
-          className="book-details-cover"
-        />
+      <div className="book-details-left">
+        <div className="book-details-media">
+          <img
+            src={coverSrc}
+            alt={`${book.title} cover`}
+            className="book-details-cover"
+          />
+          {/* FAVOURITE TOGGLE BUTTON is visible for all users but only available to use for logged-in users */}
+          <button
+            type="button"
+            className="favourite-button"
+            onClick={() => onToggleFavourite(book)}
+            disabled={!authed}
+            title={
+              authed ? "Hantera favorit" : "Logga in för att favoritmarkera"
+            }
+            aria-label={
+              authed
+                ? isFavourite
+                  ? "Ta bort bok från favoriter"
+                  : "Lägg till bok i favoriter"
+                : "Logga in för att favoritmarkera"
+            }
+          >
+            <img
+              src={isFavourite ? favouriteIconFull : favouriteIconRegular}
+              className="favourite-icon"
+              alt=""
+              aria-hidden="true"
+            />
+          </button>
+          {/* ADD ITEM TO CART BUTTON (visible for all users) */}
+          <button
+            type="button"
+            className="buy-button"
+            onClick={() => addCartItem(book)}
+            title="Lägg till i varukorg"
+            aria-label="Lägg till i varukorg"
+          >
+            <img
+              src={buyButtonIconFull}
+              className="buy-icon"
+              alt=""
+              aria-hidden="true"
+            />
+          </button>
+        </div>
       </div>
-      <div className="book-details-content">
+      <div className="book-details-right">
         <h2>{book.title}</h2>
         <h3>
           <strong>Författare:</strong>

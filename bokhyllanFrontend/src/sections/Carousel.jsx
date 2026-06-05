@@ -68,6 +68,17 @@ function Carousel({ title, items }) {
     const isbn = Number(book.isbn);
     const isFavourite = favouriteSet.has(isbn);
 
+    // Update the icon immediately so the UI responds without waiting for the API.
+    setFavouriteSet((previous) => {
+      const next = new Set(previous);
+      if (isFavourite) {
+        next.delete(isbn);
+      } else {
+        next.add(isbn);
+      }
+      return next;
+    });
+
     try {
       if (isFavourite) {
         const data = await api.removeFavourite(isbn);
@@ -78,6 +89,14 @@ function Carousel({ title, items }) {
       }
     } catch (error) {
       console.error("Could not update favourite", error);
+      // If the request fails, reload from server so the icon matches persisted state.
+      try {
+        const data = await api.getFavourites();
+        const isbns = Array.isArray(data?.favourites) ? data.favourites : [];
+        setFavouriteSet(new Set(isbns));
+      } catch (reloadError) {
+        console.error("Could not reload favourites", reloadError);
+      }
     }
   }
 

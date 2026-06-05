@@ -4,13 +4,16 @@ import "./main.css";
 import App from "./App.jsx";
 import { AuthProvider } from "./contexts/AuthContextProvider.jsx";
 import CartContextProvider from "./contexts/CartContextProvider.jsx";
+import FavouriteContextProvider from "./contexts/FavouriteContextProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <CartContextProvider>
-        <App />
-      </CartContextProvider>
+      <FavouriteContextProvider>
+        <CartContextProvider>
+          <App />
+        </CartContextProvider>
+      </FavouriteContextProvider>
     </AuthProvider>
   </StrictMode>,
 );

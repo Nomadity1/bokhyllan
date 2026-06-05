@@ -69,14 +69,15 @@ async function request(path, options = {}) {
   return data;
 }
 // LOGIN
-function login({ email, password }) {
+function login({ username, password }) {
   return request("/users/login", {
     method: "POST",
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ username, password }),
   });
 }
 // REGISTER
 function register({
+  username,
   firstname,
   surname,
   email,
@@ -89,6 +90,7 @@ function register({
   return request("/users/register", {
     method: "POST",
     body: JSON.stringify({
+      username,
       firstname,
       surname,
       email,
@@ -113,6 +115,10 @@ export function addFavourite(isbn) {
 }
 export function removeFavourite(isbn) {
   return request(`/users/current/favourites/${isbn}`, { method: "DELETE" });
+}
+
+export function getCurrentUser() {
+  return request("/users/current", { method: "GET" });
 }
 
 // CART LOCAL STORAGE MANAGEMENT FUNCTIONS
@@ -220,6 +226,7 @@ export default {
   getFavourites,
   addFavourite,
   removeFavourite,
+  getCurrentUser,
   getCartItems,
   addCartItem,
   updateCartItemQuantity,

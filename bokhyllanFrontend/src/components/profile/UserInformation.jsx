@@ -10,7 +10,9 @@ function UserInformation() {
       <div className="user-information">
         <h3>Användarinformation</h3>
         <p>Snart kommer din användarinformation att visas.</p>
-        {/* <p>Förnamn: {userInfo.firstname}</p>
+        {/* 
+        <p>Användarnamn: {userInfo.username}</p>
+        <p>Förnamn: {userInfo.firstname}</p>
         <p>Efternamn: {userInfo.surname}</p>
         <p>E-post: {userInfo.email}</p>
         <p>Postadress: {userInfo.postalAddress}</p>

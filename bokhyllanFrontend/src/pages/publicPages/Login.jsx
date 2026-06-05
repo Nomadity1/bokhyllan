@@ -10,7 +10,7 @@ import "./regandlogin.css";
 // FUNCTION
 function Login() {
   // Stateful-variables for receiving credentials and handling error
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   // Enable navigate to redirect the user after login
@@ -25,7 +25,7 @@ function Login() {
     setError("");
     // CALL API for log in (handles fetch and other operations related to login)
     try {
-      const data = await api.login({ email, password });
+      const data = await api.login({ username, password });
       // IF backend has returned a token, save it in localStorage
       if (data.accessToken) {
         // Token name matching backend
@@ -47,12 +47,12 @@ function Login() {
       <form onSubmit={handleSubmit} className="login-form">
         <div>
           <input
-            type="email"
-            // Binds input field to email state
-            value={email}
-            placeholder="E-post"
-            // Event handler that updates email state when the user types in the input field
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            // Binds input field to username state
+            value={username}
+            placeholder="Användarnamn"
+            // Event handler that updates username state when the user types in the input field
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>

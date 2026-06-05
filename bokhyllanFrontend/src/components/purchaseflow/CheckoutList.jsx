@@ -2,7 +2,7 @@
 // IMPORTS
 import { useMemo } from "react";
 import useCart from "../../hooks/useCart"; // Custom hook to manage cart state and operations
-import "./cartCheckoutConfirm.css";
+import "../../pages/purchasePages/cartCheckoutConfirm.css";
 
 // FUNCTION
 function CheckoutList() {
@@ -23,8 +23,7 @@ function CheckoutList() {
 
   // CONTENT TO BE RENDERED
   return (
-    <div className="checkout-container">
-      <h2>Sammanställning över din beställning</h2>
+    <div className="checkout-list-container">
       {cartRows.length === 0 ? (
         <p>Din varukorg är tom.</p>
       ) : (

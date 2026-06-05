@@ -1,13 +1,12 @@
-// CONFIRMATION PAGE
 // IMPORT DEPENDENCIES
 import { Link } from "react-router-dom";
 import "./cartCheckoutConfirm.css";
 
 // FUNCTION
-function Confirmation() {
+function CheckoutResponse() {
   return (
-    <div className="confirmation-container">
-      <h2>Tack för ditt köp!</h2>
+    <div className="checkout-response-container">
+      <h2 className="checkout-response-header">Tack för ditt köp!</h2>
       <p className="info-message">Funktionalitet inte implementerad än</p>
       <div className="navbar">
         <p>
@@ -20,4 +19,4 @@ function Confirmation() {
   );
 }
 // EXPORT
-export default Confirmation;
+export default CheckoutResponse;

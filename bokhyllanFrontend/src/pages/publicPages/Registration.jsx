@@ -9,6 +9,7 @@ import "./regandlogin.css";
 // FUNCTIONS & PARAMETERS
 function Registration() {
   // Stateful-variabler för att ta emot credentials och hantera error
+  const [username, setUsername] = useState("");
   const [firstname, setFirstname] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
@@ -29,6 +30,7 @@ function Registration() {
     // CALL API TO REGISTER
     try {
       await api.register({
+        username,
         firstname,
         surname,
         email,
@@ -51,6 +53,17 @@ function Registration() {
     <div className="registration-container">
       <h2>Registrering</h2>
       <form onSubmit={handleSubmit} className="registration-form">
+        <div>
+          <input
+            type="text"
+            // Binder inputfältet till username state
+            value={username}
+            placeholder="Användarnamn"
+            // Eventhanterare som uppdaterar username state när användaren skriver i inputfältet
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
         <div>
           <input
             type="text"
