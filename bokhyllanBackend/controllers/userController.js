@@ -13,6 +13,7 @@ const Order = require("../models/orderModel");
 // @access public (anyone should be able to register)
 const registerUser = asyncHandler(async (req, res) => {
   const {
+    username,
     firstname,
     surname,
     email,
@@ -24,6 +25,7 @@ const registerUser = asyncHandler(async (req, res) => {
   } = req.body; // Imports the data from the request body
   // Validate input
   if (
+    !username ||
     !firstname ||
     !surname ||
     !email ||
@@ -42,6 +44,11 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("E-mail already exists");
   }
+  const usernameExists = await User.findOne({ username });
+  if (usernameExists) {
+    res.status(400);
+    throw new Error("Username already exists");
+  }
   // Hash the password and salt it appropriately (10 rounds are not too much, but still secure)
   const hashedPassword = await bcrypt.hash(password, 10);
   // Log the hashed password
@@ -49,6 +56,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   // Create (instantiate) the user
   const user = await User.create({
+    username,
     firstname,
     surname,
     email,
@@ -64,6 +72,7 @@ const registerUser = asyncHandler(async (req, res) => {
   if (user) {
     res.status(201).json({
       _id: user.id,
+      username: user.username,
       firstname: user.firstname,
       surname: user.surname,
       email: user.email,
@@ -83,14 +92,14 @@ const registerUser = asyncHandler(async (req, res) => {
 // @access public (anyone should be able to login)
 const loginUser = asyncHandler(async (req, res) => {
   // Get data from request body
-  const { email, password } = req.body;
+  const { username, password } = req.body; // Changed from email to username
   // Validate input
-  if (!email || !password) {
+  if (!username || !password) {
     res.status(400);
     throw new Error("All fields are required");
   }
   // Check if user exists
-  const userExists = await User.findOne({ email });
+  const userExists = await User.findOne({ username: username });
   if (!userExists) {
     res.status(400);
     throw new Error("Invalid credentials");
@@ -104,7 +113,7 @@ const loginUser = asyncHandler(async (req, res) => {
       {
         // PAYLOAD 1 - User info
         user: {
-          name: userExists.name,
+          username: userExists.username,
           email: userExists.email,
           id: userExists.id,
         },
@@ -126,7 +135,26 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route GET /api/users/current
 // @access private (requires authentication, i.e., a valid token)
 const currentUser = asyncHandler(async (req, res) => {
-  res.status(200).json(req.user);
+  const user = await User.findById(req.user.id).select(
+    "username email postalAddress postalCode city phone firstname surname",
+  );
+
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  res.status(200).json({
+    id: user.id,
+    username: user.username,
+    firstname: user.firstname,
+    surname: user.surname,
+    email: user.email,
+    postalAddress: user.postalAddress,
+    postalCode: user.postalCode,
+    city: user.city,
+    phone: user.phone,
+  });
 });
 
 // FAVOURITES

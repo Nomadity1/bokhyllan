@@ -3,6 +3,11 @@
 const mongoose = require("mongoose"); // Mongoose schema generates uniqe IDs for each user (can be used as Foreign Key)
 const userSchema = new mongoose.Schema(
   {
+    username: {
+      type: String,
+      required: [true, "Please add a username"], // Anpassat felmeddelande
+      unique: [true, "Username must be unique"], // Gör så att varje username måste vara unik (eftersom det är det som används för inloggning)
+    },
     firstname: {
       type: String,
       required: [true, "Please add a first name"], // Anpassat felmeddelande
